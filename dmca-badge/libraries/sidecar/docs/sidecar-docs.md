@@ -46,8 +46,8 @@ The last line of the main plugin file calls `register_plugin_loader( __FILE__ );
 	 */
 	define( 'REVOSTOCK_GALLERY_DIR', dirname( __FILE__ ) );
 	define( 'REVOSTOCK_GALLERY_VER', '1.2.0' );
-	define( 'REVOSTOCK_GALLERY_MIN_PHP', '5.2.4' );
-	define( 'REVOSTOCK_GALLERY_MIN_WP', '3.2' );
+	define( 'REVOSTOCK_GALLERY_MIN_PHP', '8.0' );
+	define( 'REVOSTOCK_GALLERY_MIN_WP', '6.0' );
 	
 	require( REVOSTOCK_GALLERY_DIR . '/classes/class-api-client.php');
 	require( REVOSTOCK_GALLERY_DIR . '/classes/class-transients.php');

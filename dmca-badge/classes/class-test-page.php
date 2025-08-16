@@ -181,7 +181,7 @@ class DMCA_Badge_Test_Page {
 				update_option( $this->option, $backups[ $timestamp ] );
 				$this->notices[] = sprintf( __( "Restored backup from %s.", "dmca-badge" ), $date );
 			} else {
-				$this->notices[] = new WP_Error( "error", sprintf( __( "Backup from %s doesn't exist.", "dmca-bage" ), $date ) );
+				$this->notices[] = new WP_Error( "error", sprintf( __( "Backup from %s doesn't exist.", "dmca-badge" ), $date ) );
 			}
         }
         catch (Exception $e) 

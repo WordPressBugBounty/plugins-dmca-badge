@@ -1,11 +1,11 @@
 === DMCA Protection Badge ===
 Contributors: dmca, NewClarity
 Tags: dmca, badge, takedown, copyright, protection, dmca.com, plagiarism, content theft
-Requires at least: 3.2
-Tested up to: 6.2.2
+Requires at least: 6.0
+Tested up to: 6.8.2
 Plugin URI: https://www.dmca.com/WordPress
-Stable tag: 2.1.70
-Requires PHP: 7.0
+Stable tag: 2.1.58
+Requires PHP: 8.0
 
 The DMCA Protection plugin for WordPress lets you install protection badges on your site in order to deter content thieves and protect your content 
 
@@ -68,9 +68,6 @@ Email: takedowns@dmca.com with your case number and request your free takedown.
 Fixed 5.2.x compatibility and upgraded dependent libraries
 
 == Changelog ==
-= 2.1.6 =
- wordpress 6.2.2 compatibility issues
-
 = 2.1.58 =
 removed google ga  
 
@@ -121,7 +118,7 @@ Added the ability to work with all custom post types including :  Woo Products, 
 Added the "Protected pages" tab. Now easily add all pages and posts with 1 click!!
 
 = 1.9 =
-Updated to latest version of wordpress 5.3.2
+Updated to latest version of wordpress 5.6.0
 
 = 1.8 =
 Make it easier to register/login, add links to dashboard

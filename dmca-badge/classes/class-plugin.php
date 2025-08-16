@@ -354,12 +354,16 @@ class DMCA_Badge_Plugin extends Sidecar_Plugin_Base {
 
 			$settings           = get_option( 'dmca_badge_settings' );
 			$disable_rightclick = isset( $settings->values['theme']['disable_rightclick'] ) ? $settings->values['theme']['disable_rightclick'] : 'no';
+			$script_path = plugins_url('/dmca-badge/js/disable-right-click-script.js');
 
 			if ( $disable_rightclick != 'yes' ) {
 				return;
+			} else {
+				wp_enqueue_script('disable-right-click-script', $script_path, array('jquery'), wp_rand(), true);
 			}
 
-			printf( "<script>window.oncontextmenu = function(){return false;}</script>" );
+			
+			
 		}
 		catch (Exception $e) 
 		{  

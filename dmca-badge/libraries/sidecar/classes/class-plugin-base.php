@@ -66,12 +66,12 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 	/**
 	 * @var string Minimum PHP version, defaults to min version for WordPress
 	 */
-	var $min_php = '5.2.4';
+	var $min_php = '8.0';
 
 	/**
-	 * @var string Minimum WordPress version, defaults to first version requiring PHP 5.2.4.
+	 * @var string Minimum WordPress version, defaults to first version requiring PHP 8.0.
 	 */
-	var $min_wp = '3.2';
+	var $min_wp = '6.0';
 //  /**
 //   * @var string Cron recurrance
 //   */
@@ -1985,7 +1985,10 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 
 		//load_plugin_textdomain( $this->plugin_slug, false, '/' . basename( dirname( $this->plugin_file ) ) . '/languages' );
 
-		load_plugin_textdomain( plugin_basename( __FILE__ ), false, '/' . basename( dirname( $this->plugin_file ) ) . '/languages' );
+		// load_plugin_textdomain( plugin_basename( __FILE__ ), false, '/' . basename( dirname( $this->plugin_file ) ) . '/languages' );
+
+		load_plugin_textdomain( 'dmca-badge', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+
 
 		if ( is_admin() ) {
 

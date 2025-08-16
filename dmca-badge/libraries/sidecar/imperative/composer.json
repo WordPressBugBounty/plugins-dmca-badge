@@ -2,6 +2,6 @@
   "name": "newclarity/imperative",
   "description": "Imperative: The Missing require_library() for Embedded Libraries within WordPress Plugins and Themes.",
   "require": {
-      "php": ">=5.2.4"
+      "php": ">=8.0"
   }
 }
