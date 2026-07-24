@@ -1,5 +1,9 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /**
 
  * Custom Badge Template
@@ -8,12 +12,16 @@
 
 
 
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 $settings        = dmca_get_option( 'dmca_badge_settings' );
 
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 $badge_settings  = isset( $settings->values['badge'] ) ? $settings->values['badge'] : array();
 
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 $badge_selection = isset( $badge_settings['badge_selection'] ) ? $badge_settings['badge_selection'] : 'regular';
 
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 $badge_selection = $badge_selection === 'custom' ? 'selected' : '';
 
 
@@ -42,7 +50,7 @@ $badge_selection = $badge_selection === 'custom' ? 'selected' : '';
 
             <input type="hidden" field="left_background" name="dmca_badge_settings[badge][left_background]"
 
-                   value="<?php echo isset( $badge_settings['left_background'] ) ? $badge_settings['left_background'] : '#8dc642'; ?>">
+                   value="<?php echo isset( $badge_settings['left_background'] ) ? esc_html( $badge_settings['left_background'] ) : '#8dc642'; ?>">
 
         </td>
 
@@ -54,7 +62,7 @@ $badge_selection = $badge_selection === 'custom' ? 'selected' : '';
 
             <input type="hidden" field="left_text" name="dmca_badge_settings[badge][left_text]"
 
-                   value="<?php echo isset( $badge_settings['left_text'] ) ? $badge_settings['left_text'] : '#fff'; ?>">
+                   value="<?php echo isset( $badge_settings['left_text'] ) ? esc_html( $badge_settings['left_text'] ) : '#fff'; ?>">
 
         </td>
 
@@ -66,7 +74,7 @@ $badge_selection = $badge_selection === 'custom' ? 'selected' : '';
 
             <input type="hidden" field="left_border" name="dmca_badge_settings[badge][left_border]"
 
-                   value="<?php echo isset( $badge_settings['left_border'] ) ? $badge_settings['left_border'] : '#fff'; ?>">
+                   value="<?php echo isset( $badge_settings['left_border'] ) ? esc_html( $badge_settings['left_border'] ) : '#fff'; ?>">
 
         </td>
 
@@ -128,7 +136,7 @@ $badge_selection = $badge_selection === 'custom' ? 'selected' : '';
 
             <input type="hidden" field="right_background" name="dmca_badge_settings[badge][right_background]"
 
-                   value="<?php echo isset( $badge_settings['right_background'] ) ? $badge_settings['right_background'] : '#221e1f'; ?>">
+                   value="<?php echo isset( $badge_settings['right_background'] ) ? esc_html( $badge_settings['right_background'] ) : '#221e1f'; ?>">
 
         </td>
 
@@ -140,7 +148,7 @@ $badge_selection = $badge_selection === 'custom' ? 'selected' : '';
 
             <input type="hidden" field="right_text" name="dmca_badge_settings[badge][right_text]"
 
-                   value="<?php echo isset( $badge_settings['right_text'] ) ? $badge_settings['right_text'] : '#fff'; ?>">
+                   value="<?php echo isset( $badge_settings['right_text'] ) ? esc_html($badge_settings['right_text']) : '#fff'; ?>">
 
         </td>
 
@@ -152,7 +160,7 @@ $badge_selection = $badge_selection === 'custom' ? 'selected' : '';
 
             <input type="hidden" field="right_border" name="dmca_badge_settings[badge][right_border]"
 
-                   value="<?php echo isset( $badge_settings['right_border'] ) ? $badge_settings['right_border'] : '#fff'; ?>">
+                   value="<?php echo isset( $badge_settings['right_border'] ) ? esc_html( $badge_settings['right_border'] ) : '#fff'; ?>">
 
         </td>
 

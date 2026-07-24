@@ -107,7 +107,7 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 	/**
 	 * @var bool|array
 	 */
-	protected $_forms = false;
+	protected $_forms = array();
 	/**
 	 * @var bool|array
 	 */
@@ -181,22 +181,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 
 	}
@@ -251,22 +254,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 	}
 	catch (Exception $e) 
 	{  
-	  echo 'Exception Message: ' .$e->getMessage();  
+	  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 	  if ($e->getSeverity() === E_ERROR) {
-		  echo("E_ERROR triggered.\n");
+		  echo esc_html("E_ERROR triggered." . PHP_EOL);
 	  } else if ($e->getSeverity() === E_WARNING) {
-		  echo("E_WARNING triggered.\n");
+		  echo esc_html("E_WARNING triggered." . PHP_EOL);
 	  }
-	  echo "<br> $error_path";
+	  echo wp_kses_post("<br> " . esc_url($error_path));
 	}  
 	catch (ErrorException  $er)
 	{  
-	  echo 'ErrorException Message: ' .$er->getMessage();  
-	  echo "<br> $error_path";
+	  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+	  echo wp_kses_post("<br> " . esc_url($error_path));
 	}  
 	catch ( Throwable $th){
-	  echo 'ErrorException Message: ' .$th->getMessage();
-	  echo "<br> $error_path";
+	  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+	  echo wp_kses_post("<br> " . esc_url($error_path));
 	}
 
 
@@ -287,22 +293,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -321,22 +330,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -364,22 +376,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -444,13 +459,16 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 //    if ( ! $this->cron_key )
 //      $this->cron_key = "{$this->plugin_name}_cron";
 
-		if ( $this->is_plugin_page_action() ) {
+		$is_plugin_activation = $this->is_plugin_page_action() || doing_action( 'activate_plugin' );
+
+		if ( $is_plugin_activation ) {
 			global $plugin;
 			if ( ! isset( $plugin ) ) {
 				/*
 				 * This plugin is being activated
 				 */
-				$this->plugin_id   = filter_input( INPUT_GET, 'plugin', FILTER_SANITIZE_STRING );
+				//phpcs:ignore WordPress.Security.NonceVerification.Recommended -- This is a check for activation, not a form submission.
+				$this->plugin_id = isset( $_GET['plugin'] ) ? plugin_basename( sanitize_text_field( wp_unslash( $_GET['plugin'] ) ) ) : '';
 				$this->plugin_file = WP_PLUGIN_DIR . '/' . $this->plugin_id;
 			} else if ( file_exists( $plugin ) ) {
 				/**
@@ -476,6 +494,7 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 				 * @todo My god this is a hack! I really need help from WordPress core here.
 				 * @todo Blame: https://core.trac.wordpress.org/ticket/22802#comment:41
 				 */
+				//phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_debug_backtrace -- This is a development error message, not a production error.
 				$backtrace = debug_backtrace();
 				foreach ( $backtrace as $index => $call ) {
 					if ( preg_match( '#/wp-admin/includes/plugin.php$#', $call['file'] ) ) {
@@ -494,32 +513,43 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 			$this->plugin_file = $plugin;
 			$this->plugin_id   = WP_Library_Manager::$uninstalling_plugin;
 		} else {
-			/**
-			 * Grab the plugin file name from one the global values set when the plugin is included.
-			 * @see: https://wordpress.stackexchange.com/questions/15202/plugins-in-symlinked-directories
-			 * @see: https://wordpress.stackexchange.com/a/15204/89
-			 */
-			global $mu_plugin, $network_plugin, $plugin;
-			if ( isset( $mu_plugin ) ) {
-				$this->plugin_file = $mu_plugin;
-			} else if ( isset( $network_plugin ) ) {
-				$this->plugin_file = $network_plugin;
-			} else if ( isset( $plugin ) ) {
-				$this->plugin_file = $plugin;
-			} else {
-				trigger_error( sprintf( __( 'Plugin %s only works when loaded by WordPress.' ), $this->plugin_name ) );
-				exit;
-			}
-			$this->plugin_id = basename( dirname( $this->plugin_file ) ) . '/' . basename( $this->plugin_file );
-			require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+
+			/*
+			* Use the actual DMCA Badge main plugin file instead of relying on
+			* WordPress's global $plugin variable. The global value can be
+			* unreliable during WP-CLI execution on Windows.
+			*/
+			$this->plugin_file = wp_normalize_path(
+				DMCA_PLUGIN_DIR . 'dmca-badge.php'
+			);
+
+			$this->plugin_id = plugin_basename( $this->plugin_file );
+
+			require_once ABSPATH . 'wp-admin/includes/plugin.php';
+
 			if ( ! is_plugin_active( $this->plugin_id ) ) {
-				trigger_error( sprintf( __( 'Plugin %s is not an active plugin or is not installed in a subdirectory of %s.' ),
-					$this->plugin_name,
-					WP_PLUGIN_DIR
-				) );
-				exit;
+				// phpcs:disable WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
+				trigger_error(
+					sprintf(
+						// translators: %1$s is the plugin name, %2$s is the WordPress plugin directory.
+						esc_html( __(
+							'Plugin %1$s is not an active plugin or is not installed in a subdirectory of %2$s.',
+							'dmca-badge'
+						) ),
+						esc_html( $this->plugin_name ),
+						esc_html( WP_PLUGIN_DIR )
+					)
+				);
+
+				return;
 			}
-			register_deactivation_hook( $this->plugin_id, array( $this, 'deactivate' ) );
+
+			if ( is_callable( array( $this, 'deactivate' ) ) ) {
+				register_deactivation_hook(
+					$this->plugin_id,
+					array( $this, 'deactivate' )
+				);
+			}
 		}
 
 		register_uninstall_hook( $this->plugin_id, array( $this->plugin_class, 'uninstall' ) );
@@ -534,22 +564,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 	}
 	catch (Exception $e) 
 	{  
-	  echo 'Exception Message: ' .$e->getMessage();  
+	  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 	  if ($e->getSeverity() === E_ERROR) {
-		  echo("E_ERROR triggered.\n");
+		  echo esc_html("E_ERROR triggered." . PHP_EOL);
 	  } else if ($e->getSeverity() === E_WARNING) {
-		  echo("E_WARNING triggered.\n");
+		  echo esc_html("E_WARNING triggered." . PHP_EOL);
 	  }
-	  echo "<br> $error_path";
+	  echo wp_kses_post("<br> " . esc_url($error_path));
 	}  
 	catch (ErrorException  $er)
 	{  
-	  echo 'ErrorException Message: ' .$er->getMessage();  
-	  echo "<br> $error_path";
+	  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+	  echo wp_kses_post("<br> " . esc_url($error_path));
 	}  
 	catch ( Throwable $th){
-	  echo 'ErrorException Message: ' .$th->getMessage();
-	  echo "<br> $error_path";
+	  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+	  echo wp_kses_post("<br> " . esc_url($error_path));
 	}
 
 
@@ -561,28 +594,30 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
     	try {
 
 			global $pagenow;
-
-			return isset( $_POST['action'] ) && isset( $_POST['id_base'] )
-			       && 'admin-ajax.php' == $pagenow && 'save-widget' == $_POST['action'];
+			//phpcs:ignore WordPress.Security.NonceVerification.Missing
+			return isset( $_POST['action'] ) && isset( $_POST['id_base'] ) && 'admin-ajax.php' == $pagenow && 'save-widget' == $_POST['action'];
 				}
 				catch (Exception $e) 
 				{  
-				  echo 'Exception Message: ' .$e->getMessage();  
+				  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 				  if ($e->getSeverity() === E_ERROR) {
-					  echo("E_ERROR triggered.\n");
+					  echo esc_html("E_ERROR triggered." . PHP_EOL);
 				  } else if ($e->getSeverity() === E_WARNING) {
-					  echo("E_WARNING triggered.\n");
+					  echo esc_html("E_WARNING triggered." . PHP_EOL);
 				  }
-				  echo "<br> $error_path";
+				  echo wp_kses_post("<br> " . esc_url($error_path));
 				}  
 				catch (ErrorException  $er)
 				{  
-				  echo 'ErrorException Message: ' .$er->getMessage();  
-				  echo "<br> $error_path";
+				  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+				  echo wp_kses_post("<br> " . esc_url($error_path));
 				}  
 				catch ( Throwable $th){
-				  echo 'ErrorException Message: ' .$th->getMessage();
-				  echo "<br> $error_path";
+				  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+				  echo wp_kses_post("<br> " . esc_url($error_path));
 				}
 	}
 
@@ -595,29 +630,30 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 
 		$error_path = plugin_dir_url(__FILE__) ;
     	try {
-
-			return $this->is_plugin_page()
-			&& isset( $_GET['action'] )
-			&& isset( $_GET['plugin'] );
+			//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			return $this->is_plugin_page() && isset( $_GET['action'] ) && isset( $_GET['plugin'] );
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 		
 	}
@@ -639,22 +675,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -667,28 +706,30 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 
 		$error_path = plugin_dir_url(__FILE__) ;
     	try {
-
-			return $this->is_plugin_deletion()
-			&& isset( $_POST['verify-delete'] ) && '1' == $_POST['verify-delete'];
+			//phpcs:ignore WordPress.Security.NonceVerification.Missing
+			return $this->is_plugin_deletion() && isset( $_POST['verify-delete'] ) && '1' == $_POST['verify-delete'];
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -702,28 +743,37 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		$error_path = plugin_dir_url(__FILE__) ;
     	try {
 
+			//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$action = isset( $_GET['action'] ) && is_string( $_GET['action'] ) ? sanitize_key( wp_unslash( $_GET['action'] ) ) : '';
+			
+			//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$checked = isset( $_REQUEST['checked'] ) && is_array( $_REQUEST['checked'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_REQUEST['checked'] ) ) : array();
+
 			return $this->is_plugin_page()
-			&& isset( $_GET['action'] ) && 'delete-selected' == $_GET['action']
-			&& isset( $_REQUEST['checked'] ) && count( $_REQUEST['checked'] );
+				&& 'delete-selected' === $action
+				&& ! empty( $checked );
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -738,22 +788,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -793,22 +846,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 	}
 	catch (Exception $e) 
 	{  
-	  echo 'Exception Message: ' .$e->getMessage();  
+	  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 	  if ($e->getSeverity() === E_ERROR) {
-		  echo("E_ERROR triggered.\n");
+		  echo esc_html("E_ERROR triggered." . PHP_EOL);
 	  } else if ($e->getSeverity() === E_WARNING) {
-		  echo("E_WARNING triggered.\n");
+		  echo esc_html("E_WARNING triggered." . PHP_EOL);
 	  }
-	  echo "<br> $error_path";
+	  echo wp_kses_post("<br> " . esc_url($error_path));
 	}  
 	catch (ErrorException  $er)
 	{  
-	  echo 'ErrorException Message: ' .$er->getMessage();  
-	  echo "<br> $error_path";
+	  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+	  echo wp_kses_post("<br> " . esc_url($error_path));
 	}  
 	catch ( Throwable $th){
-	  echo 'ErrorException Message: ' .$th->getMessage();
-	  echo "<br> $error_path";
+	  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+	  echo wp_kses_post("<br> " . esc_url($error_path));
 	}
 	}
 
@@ -830,22 +886,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -862,22 +921,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -894,22 +956,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -929,27 +994,30 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 				'url'  => plugins_url( $localfile, $this->plugin_file ),
 			) );
 			if ( file_exists( $args['path'] ) ) {
-				wp_enqueue_style( $args['name'], $args['url'] );
+				wp_enqueue_style( $args['name'], $args['url'], array(), '1.1' );
 			}
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 
 
@@ -967,22 +1035,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -999,22 +1070,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -1040,22 +1114,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 
 		
@@ -1078,22 +1155,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -1129,22 +1209,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -1166,22 +1249,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -1204,22 +1290,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 
 	}
@@ -1244,22 +1333,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -1280,22 +1372,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -1318,22 +1413,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -1348,22 +1446,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -1380,22 +1481,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -1413,22 +1517,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -1446,22 +1553,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -1482,22 +1592,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -1532,22 +1645,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -1566,36 +1682,42 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		try {
 			if ( $this->needs_settings && ! $this->has_required_settings() && $this->is_plugin_page() && ! $this->is_confirm_plugin_deletion() ) {
 				$icon_html = $this->has_url( 'logo_icon' ) ? "<span class=\"sidecar-logo-icon\"></span><img src=\"{$this->logo_icon_url}\" /></span>" : '';
-				$message   = sprintf( __( 'The <em>%s</em> plugin is now activated. Please configure it\'s <a href="%s"><strong>settings</strong></a>.', 'sidecar' ),
+				// translators: %1$s is the plugin title, %2$s is the settings URL.
+				$message   = sprintf( __( 'The <em>%1$s</em> plugin is now activated. Please configure it\'s <a href="%2$s"><strong>settings</strong></a>.', 'dmca-badge' ),
 					$this->plugin_title,
 					$this->get_settings_url()
 				);
-				$html      = <<<HTML
-				<div id="message" class="error settings-error">
-				    <p>{$icon_html}{$message}</p>
-				</div>
-				HTML;
+				$html = sprintf(
+					'<div id="message" class="error settings-error"><p>%1$s%2$s</p></div>',
+					$icon_html,
+					$message
+				);
+
+				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Internal trusted HTML.
 				echo $html;
 			}
 		}
 		catch (Exception $e)
 		{
-		  echo 'Exception Message: ' .$e->getMessage();
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 		catch (ErrorException  $er)
 		{
-		  echo 'ErrorException Message: ' .$er->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+  
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -1629,22 +1751,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -1659,22 +1784,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -1686,28 +1814,30 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 	function is_confirm_plugin_deletion() {
 		$error_path = plugin_dir_url(__FILE__) ;
 		try {
-
-			return $this->is_plugin_deletion()
-			&& ! isset( $_POST['verify-delete'] );
+			// phpcs:ignore WordPress.Security.NonceVerification.Missing -- This is a check for deletion, not a form submission.
+			return $this->is_plugin_deletion() && ! isset( $_POST['verify-delete'] );
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -1724,22 +1854,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -1763,22 +1896,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -1797,22 +1933,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -1828,7 +1967,7 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 
 			if ( $file == $this->plugin_id ) {
 				$url       = $this->get_settings_url();
-				$link_text = __( 'Settings', 'sidecar' );
+				$link_text = __( 'Settings', 'dmca-badge' );
 				$links[]   = "<a href=\"{$url}\">{$link_text}</a>";
 			}
 
@@ -1836,22 +1975,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -1876,22 +2018,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -1922,22 +2067,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -1953,22 +2101,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -1977,8 +2128,8 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 	try {
 
 		
-//    add_action( 'cron_schedules', array( $this, '_cron_schedules' ) );
-//    add_action( 'cron', array( $this, '_cron' ) );
+		//    add_action( 'cron_schedules', array( $this, '_cron_schedules' ) );
+		//    add_action( 'cron', array( $this, '_cron' ) );
 		/**
 		 * @todo Figure out how to load this only if needed
 		 */
@@ -1987,7 +2138,11 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 
 		// load_plugin_textdomain( plugin_basename( __FILE__ ), false, '/' . basename( dirname( $this->plugin_file ) ) . '/languages' );
 
-		load_plugin_textdomain( 'dmca-badge', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+		// load_plugin_textdomain(
+		// 	'dmca-badge',
+		// 	false,
+		// 	dirname( plugin_basename( $this->plugin_file ) ) . '/languages'
+		// );
 
 
 		if ( is_admin() ) {
@@ -2014,22 +2169,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 	}
 	catch (Exception $e) 
 	{  
-	  echo 'Exception Message: ' .$e->getMessage();  
+	  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 	  if ($e->getSeverity() === E_ERROR) {
-		  echo("E_ERROR triggered.\n");
+		  echo esc_html("E_ERROR triggered." . PHP_EOL);
 	  } else if ($e->getSeverity() === E_WARNING) {
-		  echo("E_WARNING triggered.\n");
+		  echo esc_html("E_WARNING triggered." . PHP_EOL);
 	  }
-	  echo "<br> $error_path";
+	  echo wp_kses_post("<br> " . esc_url($error_path));
 	}  
 	catch (ErrorException  $er)
 	{  
-	  echo 'ErrorException Message: ' .$er->getMessage();  
-	  echo "<br> $error_path";
+	  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+	  echo wp_kses_post("<br> " . esc_url($error_path));
 	}
 	catch ( Throwable $th){
-	 echo 'ErrorException Message: ' .$th->getMessage();
-	 echo "<br> $error_path";
+	 echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+	 echo wp_kses_post("<br> " . esc_url($error_path));
 	}
 	}
 
@@ -2062,22 +2220,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -2108,22 +2269,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -2156,22 +2320,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -2189,26 +2356,29 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 			 */
 			$form = isset( $args['form'] ) ? $args['form'] : end( $this->_forms );
 
-			return $form->add_button( 'save', __( 'Save Settings', 'sidecar' ), $args );
+			return $form->add_button( 'save', __( 'Save Settings', 'dmca-badge' ), $args );
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -2232,22 +2402,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -2272,22 +2445,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -2306,22 +2482,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -2336,22 +2515,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -2368,22 +2550,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -2401,22 +2586,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -2436,7 +2624,11 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 			} // This is the 'default' shortcode
 
 			if ( ! isset( $this->_shortcodes[ $shortcode_name ] ) ) {
-				trigger_error( sprintf( __( 'Need to call %s->initialize_shortcodes() before using %s->get_shortcode().' ), $this->plugin_class, $this->plugin_class ) );
+				// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error -- Required to stop execution when initialize_shortcodes() has not been called.
+				trigger_error( sprintf( 
+					/* translators: %1$s and %2$s are the plugin class name. */
+					esc_html(__( 'Need to call %1$s->initialize_shortcodes() before using %2$s->get_shortcode().', 'dmca-badge' ) ), esc_html( $this->plugin_class ), esc_html( $this->plugin_class ) 
+					), E_USER_ERROR );
 			} else {
 				/**
 				 * @var Sidecar_Shortcode $shortcode
@@ -2452,22 +2644,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -2490,22 +2685,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -2527,22 +2725,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -2560,7 +2761,7 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 //   * @return mixed
 //   */
 //  function _cron_schedules( $schedules ) {
-// 		$schedules['fifteenseconds'] = array( 'interval' => 15, 'display' => __( 'Once Every Fifteen Seconds' ) );
+// 		$schedules['fifteenseconds'] = array( 'interval' => 15, 'display' => __( 'Once Every Fifteen Seconds', 'dmca-badge' ) );
 // 		return $schedules;
 // 	}
 
@@ -2640,22 +2841,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -2678,22 +2882,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -2708,22 +2915,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -2738,22 +2948,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -2765,27 +2978,30 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		try {
 			
 			if ( ! empty( $args['section']->section_text ) ) {
-				echo $args['section']->section_text;
+				echo esc_html($args['section']->section_text);
 			}
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -2796,26 +3012,30 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 
 		$error_path = plugin_dir_url(__FILE__) ;
 		try {
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Internal trusted HTML.
 			echo $this->get_form_field_html( $field_name, $form_name );
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -2835,22 +3055,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -2874,22 +3097,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 //  /**
@@ -2912,22 +3138,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -2948,22 +3177,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -2986,22 +3218,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -3018,22 +3253,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -3063,22 +3301,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -3093,22 +3334,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -3123,22 +3367,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -3174,22 +3421,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -3204,8 +3454,9 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 				/**
 				 * What about plugins with an API but no need for forms?  Is that possible since forms=settings in Sidecar?
 				 */
-				$error_message = __( '$plugin->set_api($api) cannot be called before forms have been added. Please call $plugin->add_form() in $plugin->initialize_plugin() at least once prior to calling set_api().', 'sidecar' );
-				trigger_error( $error_message );
+				$error_message = __( '$plugin->set_api($api) cannot be called before forms have been added. Please call $plugin->add_form() in $plugin->initialize_plugin() at least once prior to calling set_api().', 'dmca-badge' );
+				// phpcs:disable WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
+				trigger_error( esc_html( $error_message ), E_USER_ERROR );
 				exit;
 			}
 			$api->caller = $this;
@@ -3222,22 +3473,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -3264,22 +3518,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -3307,22 +3564,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -3335,7 +3595,8 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 			
 			if ( ! $this->_admin_initialized ) {
 				if ( ! method_exists( $this, 'initialize_admin' ) ) {
-					trigger_error( __( 'Plugin must define a $plugin->initialize_admin() method..', 'sidecar' ) );
+					// phpcs:disable WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
+					trigger_error( esc_html( __( 'Plugin must define a $plugin->initialize_admin() method..', 'dmca-badge' ) ), E_USER_ERROR );
 					exit;
 				}
 				$this->initialize_admin();
@@ -3350,22 +3611,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -3380,22 +3644,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -3412,22 +3679,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -3449,22 +3719,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -3476,12 +3749,16 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		try {
 			
 			if ( ! isset( $this->_current_admin_page ) ) {
+				//phpcs:ignore WordPress.Security.NonceVerification.Recommended -- This is not a form submission, just a page slug.
 				if ( ! isset( $_GET['page'] ) || ! is_admin() ) {
 					$this->_current_admin_page = false;
 				} else {
+					//phpcs:ignore WordPress.Security.NonceVerification.Recommended -- This is not a form submission, just a page slug.
 					if ( isset( $_GET['tab'] ) ) {
+						//phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.NonceVerification.Recommended -- This is not a form submission, just a page slug.
 						$tab = $_GET['tab'];
 					} else {
+						//phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.NonceVerification.Recommended -- This is not a form submission, just a page slug.
 						$page = $this->get_admin_page( $_GET['page'] );
 						if ( $page && method_exists( $page, 'get_default_tab' ) ) {
 							$tab = $page->get_default_tab()->tab_slug;
@@ -3492,6 +3769,7 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 					 * Scan through the array to find it.
 					 */
 					foreach ( array_keys( $this->_admin_pages ) as $admin_page_slug ) {
+						//phpcs:ignore WordPress.Security.NonceVerification.Recommended -- This is not a form submission, just a page slug.
 						if ( "{$this->plugin_slug}-{$admin_page_slug}" == $_GET['page'] ) {
 							$this->_current_admin_page = $this->get_admin_page( $admin_page_slug );
 							break;
@@ -3504,22 +3782,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -3534,22 +3815,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -3588,22 +3872,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -3624,14 +3911,18 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 
 			global $wp_version;
 			if ( version_compare( $wp_version, $this->min_wp, '<' ) ) {
-				deactivate_plugins( basename( $this->plugin_file ) );
-				$msg = __( 'Your site needs to be running WordPress %s or later in order to use %s.', 'sidecar' );
-				trigger_error( sprintf( $msg, $this->min_wp, $this->plugin_title ), E_USER_ERROR );
+				deactivate_plugins( plugin_basename( $this->plugin_file ) );
+				// translators: 1: minimum required PHP version, 2: plugin title
+				$msg = esc_html( __( 'Your site needs to be running WordPress %1$s or later in order to use %2$s.', 'dmca-badge' ) );
+				//phpcs:ignore 	WordPress.PHP.DevelopmentFunctions.error_log_trigger_error -- it's using for some purpose.
+				trigger_error( sprintf( esc_html( $msg ), esc_html( $this->min_wp ), esc_html( $this->plugin_title ) ), E_USER_ERROR );
 			}
 			if ( version_compare( PHP_VERSION, $this->min_php, '<' ) ) {
-				deactivate_plugins( basename( $this->plugin_file ) );
-				$msg = __( 'Your site needs to be running PHP %s or later in order to use %s.', 'sidecar' );
-				trigger_error( sprintf( $msg, $this->min_php, $this->plugin_title ), E_USER_ERROR );
+				deactivate_plugins( plugin_basename( $this->plugin_file ) );
+				// translators: %1$s is the minimum PHP version required, %2$s is the plugin name.	
+				$msg = esc_html( __( 'Your site needs to be running PHP %1$s or later in order to use %2$s.', 'dmca-badge' ) );
+				//phpcs:ignore 	WordPress.PHP.DevelopmentFunctions.error_log_trigger_error -- it's using for some purpose.
+				trigger_error( sprintf( esc_html( $msg ), esc_html( $this->min_php ), esc_html( $this->plugin_title ) ), E_USER_ERROR );
 			} else {
 				// @todo Add simplified support for cron when we see a use-case for it.
 				//if ( ! wp_next_scheduled( $this->cron_key ) ) {
@@ -3649,7 +3940,7 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 					$auth_provider = $api->get_auth_provider();
 					$auth_form     = $this->get_auth_form();
 					if ( ! $auth_form ) {
-						wp_die( __( 'There is no auth form configured. Call $admin_page->set_auth_form( $form_name ) inside initialize_admin_page( $admin_page ).', 'sidecar' ) );
+						wp_die( esc_html( __( 'There is no auth form configured. Call $admin_page->set_auth_form( $form_name ) inside initialize_admin_page( $admin_page ).', 'dmca-badge' ) ) );
 					}
 
 					$account_settings = $auth_form->get_settings();
@@ -3699,22 +3990,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -3754,22 +4048,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -3786,22 +4083,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -3863,22 +4163,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -3895,22 +4198,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}	
 	}
 
@@ -3927,22 +4233,25 @@ class Sidecar_Plugin_Base extends Sidecar_Singleton_Base {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 }

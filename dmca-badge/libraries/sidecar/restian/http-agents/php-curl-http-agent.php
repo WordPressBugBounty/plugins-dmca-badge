@@ -16,6 +16,7 @@ class RESTian_Php_Curl_Http_Agent extends RESTian_Http_Agent_Base {
     try {
     $error_path = plugin_dir_url(__FILE__) ;
 
+      // phpcs:disable WordPress.WP.AlternativeFunctions.curl_curl_init,WordPress.WP.AlternativeFunctions.curl_curl_setopt_array,WordPress.WP.AlternativeFunctions.curl_curl_exec,WordPress.WP.AlternativeFunctions.curl_curl_getinfo,WordPress.WP.AlternativeFunctions.curl_curl_errno,WordPress.WP.AlternativeFunctions.curl_curl_error,WordPress.WP.AlternativeFunctions.curl_curl_close -- cURL is intentionally used by this HTTP client.
       $ch = curl_init();
 
       curl_setopt_array(
@@ -48,7 +49,8 @@ class RESTian_Php_Curl_Http_Agent extends RESTian_Http_Agent_Base {
           'errno' => curl_errno( $ch ),
         );
       }
-      curl_close($ch);
+
+      // phpcs:enable
 
       return $response;
     }
@@ -56,22 +58,25 @@ class RESTian_Php_Curl_Http_Agent extends RESTian_Http_Agent_Base {
   
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
   }
 }

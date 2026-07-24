@@ -121,27 +121,30 @@ abstract class RESTian_Client extends RESTian_Base {
       /**
        * Set the API Version to be changed every second for development.  If not in development set in subclass.
        */
-      $this->api_version = date( DATE_ISO8601, time() );
+      $this->api_version = gmdate( DATE_ISO8601, time() );
       $this->http_agent = defined( 'WP_CONTENT_DIR') && function_exists( 'wp_remote_get' ) ? 'wordpress' : 'php_curl';
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
   }
 
@@ -169,22 +172,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
 
 
@@ -203,22 +209,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
 
   }
@@ -237,22 +246,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
 
   }
@@ -276,22 +288,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
   }
 
@@ -306,22 +321,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
 
   }
@@ -345,22 +363,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
   }
 
@@ -378,22 +399,25 @@ abstract class RESTian_Client extends RESTian_Base {
       }
       catch (Exception $e) 
       {  
-        echo 'Exception Message: ' .$e->getMessage();  
+        echo esc_html('Exception Message: ' . $e->getMessage());
+  
         if ($e->getSeverity() === E_ERROR) {
-            echo("E_ERROR triggered.\n");
+            echo esc_html("E_ERROR triggered." . PHP_EOL);
         } else if ($e->getSeverity() === E_WARNING) {
-            echo("E_WARNING triggered.\n");
+            echo esc_html("E_WARNING triggered." . PHP_EOL);
         }
-        echo "<br> $error_path";
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch (ErrorException  $er)
       {  
-        echo 'ErrorException Message: ' .$er->getMessage();  
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch ( Throwable $th){
-        echo 'ErrorException Message: ' .$th->getMessage();
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }
   }
 
@@ -409,22 +433,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
     
   }
@@ -451,22 +478,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
 
   }
@@ -484,22 +514,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
   }
 
@@ -518,22 +551,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
 
   }
@@ -549,22 +585,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
 
   }
@@ -589,22 +628,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
   }
 
@@ -624,22 +666,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
 
   }
@@ -663,22 +708,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
   }
 
@@ -695,22 +743,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
   }
 
@@ -725,22 +776,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
   }
 
@@ -757,22 +811,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
 
   }
@@ -788,22 +845,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
 
   }
@@ -822,22 +882,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
   }
 
@@ -853,22 +916,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
   }
 
@@ -894,22 +960,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
   }
   /**
@@ -929,22 +998,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
   }
   /**
@@ -964,22 +1036,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
   }
   /**
@@ -994,22 +1069,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
   }
   /**
@@ -1024,22 +1102,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
   }
   /**
@@ -1054,22 +1135,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
 
   }
@@ -1084,22 +1168,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
   }
   /**
@@ -1120,22 +1207,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
 
   }
@@ -1190,22 +1280,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
   }
   /**
@@ -1228,22 +1321,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
 
   }
@@ -1267,22 +1363,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
 
   }
@@ -1306,22 +1405,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
 
   }
@@ -1361,22 +1463,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
   }
 
@@ -1401,22 +1506,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
   }
   /**
@@ -1435,22 +1543,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
   }
   /**
@@ -1467,22 +1578,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
 
   }
@@ -1526,22 +1640,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
   }
   /**
@@ -1555,22 +1672,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
   }
 
@@ -1604,22 +1724,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
   }
   /**
@@ -1650,22 +1773,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
   }
 
@@ -1682,22 +1808,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
   }
 
@@ -1717,22 +1846,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
   }
 
@@ -1751,22 +1883,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
     
   }
@@ -1786,22 +1921,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
   }
 
@@ -1818,22 +1956,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
   }
 
@@ -1853,22 +1994,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
   }
 
@@ -1884,6 +2028,7 @@ abstract class RESTian_Client extends RESTian_Base {
       $result = false;
       $resource_name = preg_replace( '#^get_(.*)$#', '$1', $method_name );
       if ( ! $this->has_resource( $resource_name ) ) {
+        // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
         trigger_error( sprintf( 'ERROR: Method %s() does not exist for class %s.' ), $method_name, get_class( $this ) );
       } else {
         array_unshift( $args, $resource_name );
@@ -1894,22 +2039,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
   }
 
@@ -1926,22 +2074,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
   }
 
@@ -1957,22 +2108,25 @@ abstract class RESTian_Client extends RESTian_Base {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
   }
 
@@ -1986,28 +2140,32 @@ abstract class RESTian_Client extends RESTian_Base {
     $error_path = plugin_dir_url(__FILE__) ;
     try {
 
-      if ( ! $flags )
-        $flags  = FILTER_FLAG_ENCODE_LOW | FILTER_FLAG_ENCODE_HIGH | FILTER_FLAG_ENCODE_AMP;
-      return filter_var( $string, FILTER_SANITIZE_STRING, $flags );
+      /*
+      * Keep $flags for backward compatibility with existing calls.
+      */
+      return sanitize_text_field( (string) $string );
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
   }
 

@@ -1,4 +1,9 @@
 <?php
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /**
  * Designed to allow caching
  *
@@ -8,36 +13,49 @@
 /**
  * @param string $css_dir
  */
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 function output_css( $css_dir ) {
 
   $error_path = plugin_dir_url(__FILE__) ;
     try {
 
-    $files = headers( array(
-      'css_dir' => $css_dir,
-      'color_scheme' => filter_input( INPUT_GET, 'color', FILTER_SANITIZE_STRING ),
-      'cache_seconds' =>  filter_input( INPUT_GET, 'cache', FILTER_SANITIZE_NUMBER_INT ),
-     ));
+    // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+    $color_scheme = isset( $_GET['color'] ) && is_string( $_GET['color'] ) ? sanitize_key( wp_unslash( $_GET['color'] ) ) : '';
+
+    // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+    $cache_seconds = isset( $_GET['cache'] ) && is_scalar( $_GET['cache'] ) ? absint( wp_unslash( $_GET['cache'] ) ) : 0;
+
+    $files = headers(
+      array(
+        'css_dir'       => $css_dir,
+        'color_scheme'  => $color_scheme,
+        'cache_seconds' => $cache_seconds,
+      )
+    );
+    
     body( $files );
   }
   catch (Exception $e) 
   {  
-    echo 'Exception Message: ' .$e->getMessage();  
+    echo esc_html('Exception Message: ' . $e->getMessage());
+  
     if ($e->getSeverity() === E_ERROR) {
-        echo("E_ERROR triggered.\n");
+        echo esc_html("E_ERROR triggered." . PHP_EOL);
     } else if ($e->getSeverity() === E_WARNING) {
-        echo("E_WARNING triggered.\n");
+        echo esc_html("E_WARNING triggered." . PHP_EOL);
     }
-    echo "<br> $error_path";
+    echo wp_kses_post("<br> " . esc_url($error_path));
   }  
   catch (ErrorException  $er)
   {  
-    echo 'ErrorException Message: ' .$er->getMessage();  
-    echo "<br> $error_path";
+    echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+    echo wp_kses_post("<br> " . esc_url($error_path));
   }  
   catch ( Throwable $th){
-    echo 'ErrorException Message: ' .$th->getMessage();
-    echo "<br> $error_path";
+    echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+    echo wp_kses_post("<br> " . esc_url($error_path));
   }
 }
 /**
@@ -45,6 +63,7 @@ function output_css( $css_dir ) {
  *
  * @return array Files
  */
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 function headers( $args ) {
   $error_path = plugin_dir_url(__FILE__) ;
     try {
@@ -72,8 +91,10 @@ function headers( $args ) {
     $modified = true;
     $matched = false;
 
-    if ( ! empty( $_SERVER['HTTP_IF_NONE_MATCH'] ) )
+    if ( ! empty( $_SERVER['HTTP_IF_NONE_MATCH'] ) ) {
+      // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.ValidatedSanitizedInput.MissingUnslash
       $matched = $etag == trim( $_SERVER['HTTP_IF_NONE_MATCH'], '"' );
+    }
 
     if ( ! empty( $_SERVER['HTTP_IF_MODIFIED_SINCE'] ) )
       $modified = $time_string != $_SERVER['HTTP_IF_MODIFIED_SINCE'];
@@ -92,22 +113,25 @@ function headers( $args ) {
   }
   catch (Exception $e) 
   {  
-    echo 'Exception Message: ' .$e->getMessage();  
+    echo esc_html('Exception Message: ' . $e->getMessage());
+  
     if ($e->getSeverity() === E_ERROR) {
-        echo("E_ERROR triggered.\n");
+        echo esc_html("E_ERROR triggered." . PHP_EOL);
     } else if ($e->getSeverity() === E_WARNING) {
-        echo("E_WARNING triggered.\n");
+        echo esc_html("E_WARNING triggered." . PHP_EOL);
     }
-    echo "<br> $error_path";
+    echo wp_kses_post("<br> " . esc_url($error_path));
   }  
   catch (ErrorException  $er)
   {  
-    echo 'ErrorException Message: ' .$er->getMessage();  
-    echo "<br> $error_path";
+    echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+    echo wp_kses_post("<br> " . esc_url($error_path));
   }  
   catch ( Throwable $th){
-    echo 'ErrorException Message: ' .$th->getMessage();
-    echo "<br> $error_path";
+    echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+    echo wp_kses_post("<br> " . esc_url($error_path));
   }
 }
 /**
@@ -115,40 +139,46 @@ function headers( $args ) {
  *
  * @param array $files
  */
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 function body( $files ) {
   $error_path = plugin_dir_url(__FILE__) ;
     try {
 
     foreach( $files as $file ) {
       if ( file_exists( $file ) ) {
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Internal trusted HTML.
         echo file_get_contents( $file );
       }
     }
   }
   catch (Exception $e) 
   {  
-    echo 'Exception Message: ' .$e->getMessage();  
+    echo esc_html('Exception Message: ' . $e->getMessage());
+  
     if ($e->getSeverity() === E_ERROR) {
-        echo("E_ERROR triggered.\n");
+        echo esc_html("E_ERROR triggered." . PHP_EOL);
     } else if ($e->getSeverity() === E_WARNING) {
-        echo("E_WARNING triggered.\n");
+        echo esc_html("E_WARNING triggered." . PHP_EOL);
     }
-    echo "<br> $error_path";
+    echo wp_kses_post("<br> " . esc_url($error_path));
   }  
   catch (ErrorException  $er)
   {  
-    echo 'ErrorException Message: ' .$er->getMessage();  
-    echo "<br> $error_path";
+    echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+    echo wp_kses_post("<br> " . esc_url($error_path));
   }  
   catch ( Throwable $th){
-    echo 'ErrorException Message: ' .$th->getMessage();
-    echo "<br> $error_path";
+    echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+    echo wp_kses_post("<br> " . esc_url($error_path));
   }
 }
 /**
  * @param datetime $datetime
  * @return string
  */
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 function format_gmt_string( $datetime ) {
   $error_path = plugin_dir_url(__FILE__) ;
     try {
@@ -157,21 +187,24 @@ function format_gmt_string( $datetime ) {
   }
   catch (Exception $e) 
   {  
-    echo 'Exception Message: ' .$e->getMessage();  
+    echo esc_html('Exception Message: ' . $e->getMessage());
+  
     if ($e->getSeverity() === E_ERROR) {
-        echo("E_ERROR triggered.\n");
+        echo esc_html("E_ERROR triggered." . PHP_EOL);
     } else if ($e->getSeverity() === E_WARNING) {
-        echo("E_WARNING triggered.\n");
+        echo esc_html("E_WARNING triggered." . PHP_EOL);
     }
-    echo "<br> $error_path";
+    echo wp_kses_post("<br> " . esc_url($error_path));
   }  
   catch (ErrorException  $er)
   {  
-    echo 'ErrorException Message: ' .$er->getMessage();  
-    echo "<br> $error_path";
+    echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+    echo wp_kses_post("<br> " . esc_url($error_path));
   }  
   catch ( Throwable $th){
-    echo 'ErrorException Message: ' .$th->getMessage();
-    echo "<br> $error_path";
+    echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+    echo wp_kses_post("<br> " . esc_url($error_path));
   }  
 }

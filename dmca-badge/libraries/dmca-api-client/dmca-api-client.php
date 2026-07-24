@@ -1,4 +1,9 @@
 <?php
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /**
  * DMCA API Client - Provides a PHP 5.2+ class for interfacing with the API at DMCA.com.
  *

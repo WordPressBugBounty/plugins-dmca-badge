@@ -3,18 +3,41 @@
 Plugin Name: DMCA Website Protection Badge
 Plugin URI : https://www.dmca.com/WordPress/default.aspx?r=wpd1
 Description: Protect your content with a DMCA.com Website Protection Badge. Our badges deter content theft, provide tracking of unauthorized usage (with account), and make takedowns easier and more effective. Visit the plugin site to learn more about DMCA Website Protection Badges, or to register.
-Version: 2.2.0
+Version: 2.3.0
+Tested up to: 7.0
 Author: DMCA.com
 Text Domain: dmca-badge
 Author URI: https://wordpress.org/plugins/dmca-badge/
 Plugin URI: https://www.dmca.com/WordPress/default.aspx?r=wpd
-License: GPLv2
+License: GPLv2 or later
 */
-require( dirname( __FILE__ ) . '/libraries/imperative/imperative.php' );
 
-require_library( 'restian', '0.4.1', __FILE__, 'libraries/restian/restian.php' );
-require_library( 'sidecar', '0.5.1', __FILE__, 'libraries/sidecar/sidecar.php' );
-require_library( 'dmca-api-client', '0.1.0', __FILE__, 'libraries/dmca-api-client/dmca-api-client.php' );
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
+require_once __DIR__ . '/libraries/imperative/imperative.php';
+
+require_library(
+	'restian',
+	'0.4.1',
+	__FILE__,
+	__DIR__ . '/libraries/restian/restian.php'
+);
+
+require_library(
+	'sidecar',
+	'0.5.1',
+	__FILE__,
+	__DIR__ . '/libraries/sidecar/sidecar.php'
+);
+
+require_library(
+	'dmca-api-client',
+	'0.1.0',
+	__FILE__,
+	__DIR__ . '/libraries/dmca-api-client/dmca-api-client.php'
+);
 
 register_plugin_loader( __FILE__ );
 
@@ -51,22 +74,25 @@ if ( ! function_exists( 'dmca_pass_token_to_widget' ) ) {
 
 		catch (Exception $e) 
 		{  
-			echo 'Exception Message: ' .$e->getMessage();  
+			echo esc_html('Exception Message: ' . $e->getMessage());
+  
 			if ($e->getSeverity() === E_ERROR) {
-				echo("E_ERROR triggered.\n");
+				echo esc_html("E_ERROR triggered." . PHP_EOL);
 			} else if ($e->getSeverity() === E_WARNING) {
-				echo("E_WARNING triggered.\n");
+				echo esc_html("E_WARNING triggered." . PHP_EOL);
 			}
-			echo "<br> $error_path";
+			echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-			echo 'ErrorException Message: ' .$er->getMessage();  
-			echo "<br> $error_path";
+			echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+			echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-			echo 'ErrorException Message: ' .$th->getMessage();
-			echo "<br> $error_path";
+			echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+			echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 			
 	}
@@ -85,7 +111,8 @@ if ( ! function_exists( 'dmca_enqueue_scripts' ) ) {
 				isset( $settings['badge']['badge_selection'] ) &&
 				$settings['badge']['badge_selection'] == 'widget' ) {
 				$live_url = 'https://dmca-services.github.io/widget/widget.js';
-				wp_enqueue_script( 'dmca-widget', $live_url );
+				// phpcs:ignore WordPress.WP.EnqueuedResourceParameters.NotInFooter
+				wp_enqueue_script( 'dmca-widget', $live_url, array(), '1.0.0' );
 			}
 			else{
 				//echo '<p>Please Contact your developer.</p>';
@@ -93,22 +120,25 @@ if ( ! function_exists( 'dmca_enqueue_scripts' ) ) {
 		}
 			catch (Exception $e) 
 		{  
-			echo 'Exception Message: ' .$e->getMessage();  
+			echo esc_html('Exception Message: ' . $e->getMessage());
+  
 			if ($e->getSeverity() === E_ERROR) {
-				echo("E_ERROR triggered.\n");
+				echo esc_html("E_ERROR triggered." . PHP_EOL);
 			} else if ($e->getSeverity() === E_WARNING) {
-				echo("E_WARNING triggered.\n");
+				echo esc_html("E_WARNING triggered." . PHP_EOL);
 			}
-			echo "<br> $error_path";
+			echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-			echo 'ErrorException Message: ' .$er->getMessage();  
-			echo "<br> $error_path";
+			echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+			echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-			echo 'ErrorException Message: ' .$th->getMessage();
-			echo "<br> $error_path";
+			echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+			echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 		//finally block  
 		
@@ -130,22 +160,25 @@ if ( ! function_exists( 'dmca_custom_scripts_addition' ) ) {
 		}
 		catch (Exception $e) 
 		{  
-			echo 'Exception Message: ' .$e->getMessage();  
+			echo esc_html('Exception Message: ' . $e->getMessage());
+  
 			if ($e->getSeverity() === E_ERROR) {
-				echo("E_ERROR triggered.\n");
+				echo esc_html("E_ERROR triggered." . PHP_EOL);
 			} else if ($e->getSeverity() === E_WARNING) {
-				echo("E_WARNING triggered.\n");
+				echo esc_html("E_WARNING triggered." . PHP_EOL);
 			}
-			echo "<br> $error_path";
+			echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-			echo 'ErrorException Message: ' .$er->getMessage();  
-			echo "<br> $error_path";
+			echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+			echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-			echo 'ErrorException Message: ' .$th->getMessage();
-			echo "<br> $error_path";
+			echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+			echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 		//finally block  
 		
@@ -196,8 +229,10 @@ if ( ! function_exists( 'dmca_sync_page' ) ) {
 	function dmca_sync_page() {
 		$error_path = plugin_dir_url(__FILE__) ;
 		try { 
-		$page_id     = isset( $_POST['page_id'] ) ? sanitize_text_field( $_POST['page_id'] ) : '';
-		$login_token = isset( $_POST['login_token'] ) ? wp_unslash( $_POST['login_token'] ) : '';
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Read-only admin filter.	
+		$page_id     = isset( $_POST['page_id'] ) ? sanitize_text_field( wp_unslash( $_POST['page_id'] ) ) : '';
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Read-only admin filter.
+		$login_token = isset( $_POST['login_token'] ) ? sanitize_text_field( wp_unslash( $_POST['login_token'] ) ) : '';
 
 		if ( ! $page_id || empty( $page_id ) ) {
 			wp_send_json_error();
@@ -208,22 +243,25 @@ if ( ! function_exists( 'dmca_sync_page' ) ) {
 
 	catch (Exception $e) 
 			{  
-				echo 'Exception Message: ' .$e->getMessage();  
+				echo esc_html('Exception Message: ' . $e->getMessage());
+  
 				if ($e->getSeverity() === E_ERROR) {
-					echo("E_ERROR triggered.\n");
+					echo esc_html("E_ERROR triggered." . PHP_EOL);
 				} else if ($e->getSeverity() === E_WARNING) {
-					echo("E_WARNING triggered.\n");
+					echo esc_html("E_WARNING triggered." . PHP_EOL);
 				}
-				echo "<br> $error_path";
+				echo wp_kses_post("<br> " . esc_url($error_path));
 			}  
 			catch (ErrorException  $er)
 			{  
-				echo 'ErrorException Message: ' .$er->getMessage();  
-				echo "<br> $error_path";
+				echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+				echo wp_kses_post("<br> " . esc_url($error_path));
 			}  
 			catch ( Throwable $th){
-				echo 'ErrorException Message: ' .$th->getMessage();
-				echo "<br> $error_path";
+				echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+				echo wp_kses_post("<br> " . esc_url($error_path));
 			}
 			//finally block  
 	}
@@ -247,9 +285,12 @@ if ( ! function_exists( 'dmca_get_login_token' ) ) {
 			$email      = isset( $settings['authenticate']['email'] ) ? $settings['authenticate']['email'] : '';
 			$password   = isset( $settings['authenticate']['password'] ) ? $settings['authenticate']['password'] : '';
 			$base_url   = esc_url_raw( 'https://api.dmca.com', array( 'https' ) );
+
+			// phpcs:ignore WordPress.WP.AlternativeFunctions.curl_curl_init -- cURL is required for this API integration.
 			$curl       = curl_init();
 			$login_data = array( 'email' => $email, 'password' => $password );
 
+			// phpcs:ignore WordPress.WP.AlternativeFunctions.curl_curl_setopt_array -- cURL is required for this API integration.
 			curl_setopt_array( $curl, array(
 				CURLOPT_URL            => sprintf( '%s/login', $base_url ),
 				CURLOPT_RETURNTRANSFER => true,
@@ -264,10 +305,11 @@ if ( ! function_exists( 'dmca_get_login_token' ) ) {
 				),
 			) );
 
+			// phpcs:ignore WordPress.WP.AlternativeFunctions.curl_curl_exec -- cURL is required for this API integration.
 			$response = curl_exec( $curl );
+			
+			// phpcs:ignore WordPress.WP.AlternativeFunctions.curl_curl_error -- cURL is required for this API integration.
 			$err      = curl_error( $curl );
-
-			curl_close( $curl );
 
 			$dmca_login_token = ! $err ? str_replace( '"', '', $response ) : '';
 			set_transient( 'dmca_login_token', $dmca_login_token );
@@ -281,22 +323,25 @@ if ( ! function_exists( 'dmca_get_login_token' ) ) {
 
 	catch (Exception $e) 
 			{  
-				echo 'Exception Message: ' .$e->getMessage();  
+				echo esc_html('Exception Message: ' . $e->getMessage());
+  
 				if ($e->getSeverity() === E_ERROR) {
-					echo("E_ERROR triggered.\n");
+					echo esc_html("E_ERROR triggered." . PHP_EOL);
 				} else if ($e->getSeverity() === E_WARNING) {
-					echo("E_WARNING triggered.\n");
+					echo esc_html("E_WARNING triggered." . PHP_EOL);
 				}
-				echo "<br> $error_path";
+				echo wp_kses_post("<br> " . esc_url($error_path));
 			}  
 			catch (ErrorException  $er)
 			{  
-				echo 'ErrorException Message: ' .$er->getMessage();  
-				echo "<br> $error_path";
+				echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+				echo wp_kses_post("<br> " . esc_url($error_path));
 			}  
 			catch ( Throwable $th){
-				echo 'ErrorException Message: ' .$th->getMessage();
-				echo "<br> $error_path";
+				echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+				echo wp_kses_post("<br> " . esc_url($error_path));
 			}
 			//finally block  
 	}
@@ -325,7 +370,7 @@ if ( ! function_exists( 'dmca_add_protected_item' ) ) {
 		$account_id = isset( $settings['authenticate']['AccountID'] ) ? $settings['authenticate']['AccountID'] : '';
 		$account_id = empty( $account_id ) ? get_user_meta( get_current_user_id(), 'dmca_account_id', true ) : $account_id;
 		$token      = empty( $token ) ? dmca_get_login_token() : $token;
-		$item_type  = empty( $item_type ) ? __( 'Web Page' ) : $item_type;
+		$item_type  = empty( $item_type ) ? __( 'Web Page', 'dmca-badge' ) : $item_type;
 		$item_post  = get_post( $post_id );
 		$item_data  = array(
 			'badgeid'     => $account_id,
@@ -337,8 +382,11 @@ if ( ! function_exists( 'dmca_add_protected_item' ) ) {
 			'type'        => $item_type,
 		);
 		$base_url   = esc_url_raw( 'https://api.dmca.com', array( 'https' ) );
+
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.curl_curl_init -- cURL is required for this API integration.
 		$curl       = curl_init();
 
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.curl_curl_setopt_array -- cURL is required for this API integration.
 		curl_setopt_array( $curl, array(
 			CURLOPT_URL            => sprintf( '%s/addProtectedItem', $base_url ),
 			CURLOPT_RETURNTRANSFER => true,
@@ -354,17 +402,18 @@ if ( ! function_exists( 'dmca_add_protected_item' ) ) {
 			),
 		) );
 
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.curl_curl_exec -- cURL is required for this API integration.
 		$response = curl_exec( $curl );
-		$err      = curl_error( $curl );
 
-		curl_close( $curl );
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.curl_curl_error -- cURL is required for this API integration.
+		$err      = curl_error( $curl );
 
 		if ( $err ) {
 			return $err;
 		}
 
 		update_post_meta( $post_id, 'dmca_submission_status', 'sent' );
-
+		// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log -- Debug logging during development.
 		error_log( $response );
 
 		return apply_filters( 'dmca_add_protected_item', $response );
@@ -372,22 +421,25 @@ if ( ! function_exists( 'dmca_add_protected_item' ) ) {
 
 	catch (Exception $e) 
 			{  
-				echo 'Exception Message: ' .$e->getMessage();  
+				echo esc_html('Exception Message: ' . $e->getMessage());
+  
 				if ($e->getSeverity() === E_ERROR) {
-					echo("E_ERROR triggered.\n");
+					echo esc_html("E_ERROR triggered." . PHP_EOL);
 				} else if ($e->getSeverity() === E_WARNING) {
-					echo("E_WARNING triggered.\n");
+					echo esc_html("E_WARNING triggered." . PHP_EOL);
 				}
-				echo "<br> $error_path";
+				echo wp_kses_post("<br> " . esc_url($error_path));
 			}  
 			catch (ErrorException  $er)
 			{  
-				echo 'ErrorException Message: ' .$er->getMessage();  
-				echo "<br> $error_path";
+				echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+				echo wp_kses_post("<br> " . esc_url($error_path));
 			}  
 			catch ( Throwable $th){
-				echo 'ErrorException Message: ' .$th->getMessage();
-				echo "<br> $error_path";
+				echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+				echo wp_kses_post("<br> " . esc_url($error_path));
 			}
 			//finally block  
 	}
@@ -420,22 +472,25 @@ if ( ! function_exists( 'dmca_get_option' ) ) {
 
 	catch (Exception $e) 
 			{  
-				echo 'Exception Message: ' .$e->getMessage();  
+				echo esc_html('Exception Message: ' . $e->getMessage());
+  
 				if ($e->getSeverity() === E_ERROR) {
-					echo("E_ERROR triggered.\n");
+					echo esc_html("E_ERROR triggered." . PHP_EOL);
 				} else if ($e->getSeverity() === E_WARNING) {
-					echo("E_WARNING triggered.\n");
+					echo esc_html("E_WARNING triggered." . PHP_EOL);
 				}
-				echo "<br> $error_path";
+				echo wp_kses_post("<br> " . esc_url($error_path));
 			}  
 			catch (ErrorException  $er)
 			{  
-				echo 'ErrorException Message: ' .$er->getMessage();  
-				echo "<br> $error_path";
+				echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+				echo wp_kses_post("<br> " . esc_url($error_path));
 			}  
 			catch ( Throwable $th){
-				echo 'ErrorException Message: ' .$th->getMessage();
-				echo "<br> $error_path";
+				echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+				echo wp_kses_post("<br> " . esc_url($error_path));
 			}
 			//finally block  
 	}
@@ -468,22 +523,25 @@ if ( ! function_exists( 'dmca_get_meta' ) ) {
 
 	catch (Exception $e) 
 			{  
-				echo 'Exception Message: ' .$e->getMessage();  
+				echo esc_html('Exception Message: ' . $e->getMessage());
+  
 				if ($e->getSeverity() === E_ERROR) {
-					echo("E_ERROR triggered.\n");
+					echo esc_html("E_ERROR triggered." . PHP_EOL);
 				} else if ($e->getSeverity() === E_WARNING) {
-					echo("E_WARNING triggered.\n");
+					echo esc_html("E_WARNING triggered." . PHP_EOL);
 				}
-				echo "<br> $error_path";
+				echo wp_kses_post("<br> " . esc_url($error_path));
 			}  
 			catch (ErrorException  $er)
 			{  
-				echo 'ErrorException Message: ' .$er->getMessage();  
-				echo "<br> $error_path";
+				echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+				echo wp_kses_post("<br> " . esc_url($error_path));
 			}  
 			catch ( Throwable $th){
-				echo 'ErrorException Message: ' .$th->getMessage();
-				echo "<br> $error_path";
+				echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+				echo wp_kses_post("<br> " . esc_url($error_path));
 			}
 			//finally block  
 	}
@@ -498,6 +556,7 @@ if ( ! function_exists( 'get_dmca_submission_status' ) ) {
 	 *
 	 * @return mixed|void
 	 */
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 	function get_dmca_submission_status( $post_id = false ) {
 		$error_path = plugin_dir_url(__FILE__) ;
 		try { 
@@ -509,22 +568,25 @@ if ( ! function_exists( 'get_dmca_submission_status' ) ) {
 
 	catch (Exception $e) 
 			{  
-				echo 'Exception Message: ' .$e->getMessage();  
+				echo esc_html('Exception Message: ' . $e->getMessage());
+  
 				if ($e->getSeverity() === E_ERROR) {
-					echo("E_ERROR triggered.\n");
+					echo esc_html("E_ERROR triggered." . PHP_EOL);
 				} else if ($e->getSeverity() === E_WARNING) {
-					echo("E_WARNING triggered.\n");
+					echo esc_html("E_WARNING triggered." . PHP_EOL);
 				}
-				echo "<br> $error_path";
+				echo wp_kses_post("<br> " . esc_url($error_path));
 			}  
 			catch (ErrorException  $er)
 			{  
-				echo 'ErrorException Message: ' .$er->getMessage();  
-				echo "<br> $error_path";
+				echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+				echo wp_kses_post("<br> " . esc_url($error_path));
 			}  
 			catch ( Throwable $th){
-				echo 'ErrorException Message: ' .$th->getMessage();
-				echo "<br> $error_path";
+				echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+				echo wp_kses_post("<br> " . esc_url($error_path));
 			}
 			//finally block  
 	}
@@ -539,6 +601,7 @@ if ( ! function_exists( 'get_dmca_submission_status_raw' ) ) {
 	 *
 	 * @return mixed|void
 	 */
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 	function get_dmca_submission_status_raw( $post_id = false ) {
 		$error_path = plugin_dir_url(__FILE__) ;
 		try { 
@@ -550,22 +613,25 @@ if ( ! function_exists( 'get_dmca_submission_status_raw' ) ) {
 
 	catch (Exception $e) 
 			{  
-				echo 'Exception Message: ' .$e->getMessage();  
+				echo esc_html('Exception Message: ' . $e->getMessage());
+  
 				if ($e->getSeverity() === E_ERROR) {
-					echo("E_ERROR triggered.\n");
+					echo esc_html("E_ERROR triggered." . PHP_EOL);
 				} else if ($e->getSeverity() === E_WARNING) {
-					echo("E_WARNING triggered.\n");
+					echo esc_html("E_WARNING triggered." . PHP_EOL);
 				}
-				echo "<br> $error_path";
+				echo wp_kses_post("<br> " . esc_url($error_path));
 			}  
 			catch (ErrorException  $er)
 			{  
-				echo 'ErrorException Message: ' .$er->getMessage();  
-				echo "<br> $error_path";
+				echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+				echo wp_kses_post("<br> " . esc_url($error_path));
 			}  
 			catch ( Throwable $th){
-				echo 'ErrorException Message: ' .$th->getMessage();
-				echo "<br> $error_path";
+				echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+				echo wp_kses_post("<br> " . esc_url($error_path));
 			}
 			//finally block  
 	}
@@ -591,22 +657,25 @@ if ( ! function_exists( 'dmca_add_custom_badge_section' ) ) {
 
 	catch (Exception $e) 
 			{  
-				echo 'Exception Message: ' .$e->getMessage();  
+				echo esc_html('Exception Message: ' . $e->getMessage());
+  
 				if ($e->getSeverity() === E_ERROR) {
-					echo("E_ERROR triggered.\n");
+					echo esc_html("E_ERROR triggered." . PHP_EOL);
 				} else if ($e->getSeverity() === E_WARNING) {
-					echo("E_WARNING triggered.\n");
+					echo esc_html("E_WARNING triggered." . PHP_EOL);
 				}
-				echo "<br> $error_path";
+				echo wp_kses_post("<br> " . esc_url($error_path));
 			}  
 			catch (ErrorException  $er)
 			{  
-				echo 'ErrorException Message: ' .$er->getMessage();  
-				echo "<br> $error_path";
+				echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+				echo wp_kses_post("<br> " . esc_url($error_path));
 			}  
 			catch ( Throwable $th){
-				echo 'ErrorException Message: ' .$th->getMessage();
-				echo "<br> $error_path";
+				echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+				echo wp_kses_post("<br> " . esc_url($error_path));
 			}
 			//finally block  
 	}
@@ -626,22 +695,25 @@ if ( ! function_exists( 'dmca_add_wrapper_in_field_html' ) ) {
 
 	catch (Exception $e) 
 			{  
-				echo 'Exception Message: ' .$e->getMessage();  
+				echo esc_html('Exception Message: ' . $e->getMessage());
+  
 				if ($e->getSeverity() === E_ERROR) {
-					echo("E_ERROR triggered.\n");
+					echo esc_html("E_ERROR triggered." . PHP_EOL);
 				} else if ($e->getSeverity() === E_WARNING) {
-					echo("E_WARNING triggered.\n");
+					echo esc_html("E_WARNING triggered." . PHP_EOL);
 				}
-				echo "<br> $error_path";
+				echo wp_kses_post("<br> " . esc_url($error_path));
 			}  
 			catch (ErrorException  $er)
 			{  
-				echo 'ErrorException Message: ' .$er->getMessage();  
-				echo "<br> $error_path";
+				echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+				echo wp_kses_post("<br> " . esc_url($error_path));
 			}  
 			catch ( Throwable $th){
-				echo 'ErrorException Message: ' .$th->getMessage();
-				echo "<br> $error_path";
+				echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+				echo wp_kses_post("<br> " . esc_url($error_path));
 			}
 			//finally block  
 	}
@@ -664,22 +736,25 @@ if ( ! function_exists( 'dmca_badge_override_html_raw' ) ) {
 
 	catch (Exception $e) 
 			{  
-				echo 'Exception Message: ' .$e->getMessage();  
+				echo esc_html('Exception Message: ' . $e->getMessage());
+  
 				if ($e->getSeverity() === E_ERROR) {
-					echo("E_ERROR triggered.\n");
+					echo esc_html("E_ERROR triggered." . PHP_EOL);
 				} else if ($e->getSeverity() === E_WARNING) {
-					echo("E_WARNING triggered.\n");
+					echo esc_html("E_WARNING triggered." . PHP_EOL);
 				}
-				echo "<br> $error_path";
+				echo wp_kses_post("<br> " . esc_url($error_path));
 			}  
 			catch (ErrorException  $er)
 			{  
-				echo 'ErrorException Message: ' .$er->getMessage();  
-				echo "<br> $error_path";
+				echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+				echo wp_kses_post("<br> " . esc_url($error_path));
 			}  
 			catch ( Throwable $th){
-				echo 'ErrorException Message: ' .$th->getMessage();
-				echo "<br> $error_path";
+				echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+				echo wp_kses_post("<br> " . esc_url($error_path));
 			}
 			//finally block  
 	}
@@ -705,22 +780,25 @@ if ( ! function_exists( 'dmca_badge_get_account_id' ) ) {
 
 	catch (Exception $e) 
 			{  
-				echo 'Exception Message: ' .$e->getMessage();  
+				echo esc_html('Exception Message: ' . $e->getMessage());
+  
 				if ($e->getSeverity() === E_ERROR) {
-					echo("E_ERROR triggered.\n");
+					echo esc_html("E_ERROR triggered." . PHP_EOL);
 				} else if ($e->getSeverity() === E_WARNING) {
-					echo("E_WARNING triggered.\n");
+					echo esc_html("E_WARNING triggered." . PHP_EOL);
 				}
-				echo "<br> $error_path";
+				echo wp_kses_post("<br> " . esc_url($error_path));
 			}  
 			catch (ErrorException  $er)
 			{  
-				echo 'ErrorException Message: ' .$er->getMessage();  
-				echo "<br> $error_path";
+				echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+				echo wp_kses_post("<br> " . esc_url($error_path));
 			}  
 			catch ( Throwable $th){
-				echo 'ErrorException Message: ' .$th->getMessage();
-				echo "<br> $error_path";
+				echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+				echo wp_kses_post("<br> " . esc_url($error_path));
 			}
 			//finally block  
 	}
@@ -752,22 +830,25 @@ if ( ! function_exists( 'dmca_badge_get_status_url' ) )
 
 	catch (Exception $e) 
 	{  
-		echo 'Exception Message: ' .$e->getMessage();  
+		echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		if ($e->getSeverity() === E_ERROR) {
-			echo("E_ERROR triggered.\n");
+			echo esc_html("E_ERROR triggered." . PHP_EOL);
 		} else if ($e->getSeverity() === E_WARNING) {
-			echo("E_WARNING triggered.\n");
+			echo esc_html("E_WARNING triggered." . PHP_EOL);
 		}
-		echo "<br> $error_path";
+		echo wp_kses_post("<br> " . esc_url($error_path));
 	}  
 	catch (ErrorException  $er)
 	{  
-		echo 'ErrorException Message: ' .$er->getMessage();  
-		echo "<br> $error_path";
+		echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		echo wp_kses_post("<br> " . esc_url($error_path));
 	}  
 	catch ( Throwable $th){
-		echo 'ErrorException Message: ' .$th->getMessage();
-		echo "<br> $error_path";
+		echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		echo wp_kses_post("<br> " . esc_url($error_path));
 	}
 
 	}

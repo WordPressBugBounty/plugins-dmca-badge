@@ -139,22 +139,25 @@ class Sidecar_Field {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 
 	}
@@ -170,22 +173,25 @@ class Sidecar_Field {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -209,22 +215,25 @@ class Sidecar_Field {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -239,22 +248,25 @@ class Sidecar_Field {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -269,22 +281,25 @@ class Sidecar_Field {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -312,9 +327,16 @@ class Sidecar_Field {
 							$checked      = ( ! empty( $value ) && $option_value == $value ) ? 'checked="checked" ' : false;
 							$selected     = ( ! empty( $value ) && $option_value == $value ) ? 'selected' : '';
 							$option_value = esc_attr( $option_value );
-							$html[]       = <<<HTML
-			<li><label for={$input_id}-{$option_value} class={$selected}><input type="radio" id="{$input_id}-{$option_value}" class="{$css_base}-field" name="{$input_name}" value="{$option_value}" {$checked}/> {$option_label}</label></li>
-			HTML;
+							$html[] = sprintf(
+								'<li><label for="%1$s-%2$s" class="%3$s"><input type="radio" id="%1$s-%2$s" class="%4$s-field" name="%5$s" value="%2$s" %6$s/> %7$s</label></li>',
+								$input_id,
+								$option_value,
+								$selected,
+								$css_base,
+								$input_name,
+								$checked,
+								$option_label
+							);
 						}
 						$html = implode( "\n", $html ) . "</ul>{$help_html}";
 					} else if ( 'select' == $this->field_type ) {
@@ -322,21 +344,32 @@ class Sidecar_Field {
 						foreach ( $this->field_options as $option_value => $option_label ) {
 							$selected     = ( ! empty( $value ) && $option_value == $value ) ? ' selected="selected"' : false;
 							$option_value = esc_attr( $option_value );
-							$html[]       = <<<HTML
-			<option value="{$option_value}"{$selected}>{$option_label}</option>
-			HTML;
+							$html[] = sprintf(
+								'<option value="%1$s"%2$s>%3$s</option>',
+								$option_value,
+								$selected,
+								$option_label
+							);
 						}
 						$html = implode( "\n", $html ) . "</select>{$help_html}";
 					} else if ( 'checkbox' == $this->field_type ) {
 						$checked = ! empty( $value ) ? 'checked="checked" ' : false;
-						$html    = <<<HTML
-			<input type="checkbox" id="{$input_id}" class="{$css_base}-field" name="{$input_name}" value="1" {$checked}/>
-			<label for="{$input_id}">{$this->field_label}</label>
-			HTML;
+						$html = sprintf(
+							'<input type="checkbox" id="%1$s" class="%2$s-field" name="%3$s" value="1" %4$s/>
+							<label for="%1$s">%5$s</label>',
+							$input_id,
+							$css_base,
+							$input_name,
+							$checked,
+							$this->field_label
+						);
 					} else if ( 'hidden' == $this->field_type ) {
-						$html = <<<HTML
-			<input type="hidden" id="{$input_id}" name="{$input_name}" value="{$value}" />
-			HTML;
+						$html = sprintf(
+							'<input type="hidden" id="%1$s" name="%2$s" value="%3$s" />',
+							$input_id,
+							$input_name,
+							$value
+						);
 					} else if ( 'textarea' == $this->field_type ) {
 			//      $value = htmlentities( $value );
 						if ( $rows = $this->get_extra( 'rows' ) ) {
@@ -345,39 +378,58 @@ class Sidecar_Field {
 						if ( $cols = $this->get_extra( 'cols' ) ) {
 							$cols = " cols=\"{$cols}\"";
 						}
-						$html = <<<HTML
-			<textarea id="{$input_id}" name="{$input_name}"{$rows}{$cols}>{$value}</textarea>{$help_html}
-			HTML;
+						$html = sprintf(
+							'<textarea id="%1$s" name="%2$s"%3$s%4$s>%5$s</textarea>%6$s',
+							$input_id,
+							$input_name,
+							$rows,
+							$cols,
+							$value,
+							$help_html
+						);
 					} else {
-						$html = <<<HTML
-			<input type="{$this->field_type}" id="{$input_id}" name="{$input_name}" value="{$value}" class="{$css_base}-field"{$size_html}/>{$help_html}
-			HTML;
+						$html = sprintf(
+							'<input type="%1$s" id="%2$s" name="%3$s" value="%4$s" class="%5$s-field"%6$s/>%7$s',
+							$this->field_type,
+							$input_id,
+							$input_name,
+							$value,
+							$css_base,
+							$size_html,
+							$help_html
+						);
 					}
 					$field_wrapper_id = $this->get_wrapper_id();
-					$html             = <<<HTML
-			<div id="{$field_wrapper_id}" class="{$this->field_type}">{$html}</div>
-			HTML;
+					$html = sprintf(
+						'<div id="%1$s" class="%2$s">%3$s</div>',
+						$field_wrapper_id,
+						$this->field_type,
+						$html
+					);
 
 					return apply_filters( 'dmca_filters_get_form_field_html', $html, $this->field_name, $this );
 				}
 				catch (Exception $e) 
 				{  
-				  echo 'Exception Message: ' .$e->getMessage();  
+				  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 				  if ($e->getSeverity() === E_ERROR) {
-					  echo("E_ERROR triggered.\n");
+					  echo esc_html("E_ERROR triggered." . PHP_EOL);
 				  } else if ($e->getSeverity() === E_WARNING) {
-					  echo("E_WARNING triggered.\n");
+					  echo esc_html("E_WARNING triggered." . PHP_EOL);
 				  }
-				  echo "<br> $error_path";
+				  echo wp_kses_post("<br> " . esc_url($error_path));
 				}  
 				catch (ErrorException  $er)
 				{  
-				  echo 'ErrorException Message: ' .$er->getMessage();  
-				  echo "<br> $error_path";
+				  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+				  echo wp_kses_post("<br> " . esc_url($error_path));
 				}  
 				catch ( Throwable $th){
-				  echo 'ErrorException Message: ' .$th->getMessage();
-				  echo "<br> $error_path";
+				  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+				  echo wp_kses_post("<br> " . esc_url($error_path));
 				}
 	}
 
@@ -401,22 +453,25 @@ class Sidecar_Field {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -431,22 +486,25 @@ class Sidecar_Field {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 }

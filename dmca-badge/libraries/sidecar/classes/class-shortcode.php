@@ -15,6 +15,13 @@ class Sidecar_Shortcode {
   var $shortcode_name;
 
   /**
+ * Post meta key used to track shortcode usage.
+ *
+ * @var string
+ */
+  public $HAS_SHORTCODE_KEY = '';
+
+  /**
    * @var array
    */
 	protected $_attributes = array();
@@ -99,9 +106,12 @@ class Sidecar_Shortcode {
       'api_var' => $attribute_name,
     ));
     if ( ! $args['example'] )
-      $args['example'] = <<<TEXT
-[{$this->shortcode_name} {$attribute_name}="{$args['sample']}"]
-TEXT;
+      $args['example'] = sprintf(
+        '[%1$s %2$s="%3$s"]',
+        $this->shortcode_name,
+        $attribute_name,
+        $args['sample']
+      );
     $this->_attributes[$attribute_name] = (object)$args;
   }
 

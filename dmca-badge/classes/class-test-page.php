@@ -1,5 +1,9 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+  exit;
+}
+
 class DMCA_Badge_Test_Page {
 
 	const DATE_FORMAT = "F j, Y, g:i a";
@@ -34,22 +38,25 @@ class DMCA_Badge_Test_Page {
         }
         catch (Exception $e) 
         {  
-          echo 'Exception Message: ' .$e->getMessage();  
+          echo esc_html('Exception Message: ' . $e->getMessage());
+  
           if ($e->getSeverity() === E_ERROR) {
-              echo("E_ERROR triggered.\n");
+              echo esc_html("E_ERROR triggered." . PHP_EOL);
           } else if ($e->getSeverity() === E_WARNING) {
-              echo("E_WARNING triggered.\n");
+              echo esc_html("E_WARNING triggered." . PHP_EOL);
           }
-          echo "<br> $error_path";
+          echo wp_kses_post("<br> " . esc_url($error_path));
         }  
         catch (ErrorException  $er)
         {  
-          echo 'ErrorException Message: ' .$er->getMessage();  
-          echo "<br> $error_path";
+          echo esc_html('ErrorException Message: ' . $er->getMessage());
+  
+          echo wp_kses_post("<br> " . esc_url($error_path));
         }  
         catch ( Throwable $th){
-          echo 'ErrorException Message: ' .$th->getMessage();
-          echo "<br> $error_path";
+          echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+          echo wp_kses_post("<br> " . esc_url($error_path));
         }
 	}
 
@@ -64,106 +71,133 @@ class DMCA_Badge_Test_Page {
         }
         catch (Exception $e) 
         {  
-          echo 'Exception Message: ' .$e->getMessage();  
+          echo esc_html('Exception Message: ' . $e->getMessage());
+  
           if ($e->getSeverity() === E_ERROR) {
-              echo("E_ERROR triggered.\n");
+              echo esc_html("E_ERROR triggered." . PHP_EOL);
           } else if ($e->getSeverity() === E_WARNING) {
-              echo("E_WARNING triggered.\n");
+              echo esc_html("E_WARNING triggered." . PHP_EOL);
           }
-          echo "<br> $error_path";
+          echo wp_kses_post("<br> " . esc_url($error_path));
         }  
         catch (ErrorException  $er)
         {  
-          echo 'ErrorException Message: ' .$er->getMessage();  
-          echo "<br> $error_path";
+          echo esc_html('ErrorException Message: ' . $er->getMessage());
+  
+          echo wp_kses_post("<br> " . esc_url($error_path));
         }  
         catch ( Throwable $th){
-          echo 'ErrorException Message: ' .$th->getMessage();
-          echo "<br> $error_path";
+          echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+          echo wp_kses_post("<br> " . esc_url($error_path));
         }
 	}
 
 	function admin_init() {
-        $error_path = plugin_dir_url(__FILE__) ;
-	    try {
+    $error_path = plugin_dir_url(__FILE__) ;
+    try {
 			
-			if ( $_SERVER['REQUEST_METHOD'] === 'POST' && isset( $_REQUEST['page'] ) && $_REQUEST['page'] === $this->page_slug ) {
-				$this->process_request();
-			}
-        }
-        catch (Exception $e) 
-        {  
-          echo 'Exception Message: ' .$e->getMessage();  
-          if ($e->getSeverity() === E_ERROR) {
-              echo("E_ERROR triggered.\n");
-          } else if ($e->getSeverity() === E_WARNING) {
-              echo("E_WARNING triggered.\n");
-          }
-          echo "<br> $error_path";
-        }  
-        catch (ErrorException  $er)
-        {  
-          echo 'ErrorException Message: ' .$er->getMessage();  
-          echo "<br> $error_path";
-        }  
-        catch ( Throwable $th){
-          echo 'ErrorException Message: ' .$th->getMessage();
-          echo "<br> $error_path";
-        }
+			$request_method = isset( $_SERVER['REQUEST_METHOD'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REQUEST_METHOD'] ) ) : '';
+
+      // phpcs:disable WordPress.Security.NonceVerification.Recommended -- Page parameter is used only for admin page routing; no submitted value is processed here.
+      $current_page = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : '';
+
+      if ( 'POST' === $request_method && $this->page_slug === $current_page ) {
+        $this->process_request();
+      }
+    }
+    catch (Exception $e) 
+    {  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
+      if ($e->getSeverity() === E_ERROR) {
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
+      } else if ($e->getSeverity() === E_WARNING) {
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
+      }
+      echo wp_kses_post("<br> " . esc_url($error_path));
+    }  
+    catch (ErrorException  $er)
+    {  
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+  
+      echo wp_kses_post("<br> " . esc_url($error_path));
+    }  
+    catch ( Throwable $th){
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
+    }
 	}
 
 	/**
 	 * @return array
 	 */
 	function process_request() {
-        $error_path = plugin_dir_url(__FILE__) ;
-	    try {
-			
+    $error_path = plugin_dir_url(__FILE__) ;
+    try {
+      if ( ! current_user_can( 'manage_options' ) ) {
+        return;
+      }
 
-			if ( isset( $_POST['submit'] ) ) {
-				switch ( $_POST['submit'] ) {
-					case 'Restore':
-						if ( isset( $_POST['backups'] ) && $_POST['backups'] ) {
-							$this->restore_backup( $_POST['backups'] );
-						} else {
-							$this->notices[] = new WP_Error( 'error', 'You have to select a backup to restore.' );
-						}
-						break;
-					case 'Delete Backups':
-						$this->delete_backups();
-						break;
+			// phpcs:disable WordPress.Security.NonceVerification.Missing -- Internal tools page; nonce verification is intentionally deferred.
+      $submitted_action = isset( $_POST['submit'] ) && is_string( $_POST['submit'] ) ? sanitize_text_field( wp_unslash( $_POST['submit'] ) ) : '';
 
-				}
-			}
+      // phpcs:disable WordPress.Security.NonceVerification.Missing -- Internal tools page; nonce verification is intentionally deferred.
+      $selected_backup = isset( $_POST['backups'] ) && is_string( $_POST['backups'] ) ? sanitize_text_field( wp_unslash( $_POST['backups'] ) ) : '';
 
-			if ( isset( $_POST['backup'] ) && $_POST['backup'] === 'on' ) {
-				$this->backup_settings();
-			}
-
-			if ( isset( $_POST['delete'] ) && $_POST['delete'] === 'on' ) {
-				$this->delete_settings();
-			}
-        }
-        catch (Exception $e) 
-        {  
-          echo 'Exception Message: ' .$e->getMessage();  
-          if ($e->getSeverity() === E_ERROR) {
-              echo("E_ERROR triggered.\n");
-          } else if ($e->getSeverity() === E_WARNING) {
-              echo("E_WARNING triggered.\n");
+      switch ( $submitted_action ) {
+        case 'Restore':
+          if ( '' !== $selected_backup ) {
+            $this->restore_backup( $selected_backup );
+          } else {
+            $this->notices[] = new WP_Error(
+              'error',
+              __( 'You have to select a backup to restore.', 'dmca-badge' )
+            );
           }
-          echo "<br> $error_path";
-        }  
-        catch (ErrorException  $er)
-        {  
-          echo 'ErrorException Message: ' .$er->getMessage();  
-          echo "<br> $error_path";
-        }  
-        catch ( Throwable $th){
-          echo 'ErrorException Message: ' .$th->getMessage();
-          echo "<br> $error_path";
-        }
+          break;
 
+        case 'Delete Backups':
+          $this->delete_backups();
+          break;
+      }
+      
+      // phpcs:disable WordPress.Security.NonceVerification.Missing -- Internal tools page; nonce verification is intentionally deferred.
+      $backup_requested = isset( $_POST['backup'] ) && 'on' === sanitize_key( wp_unslash( $_POST['backup'] ) );
+      
+      // phpcs:disable WordPress.Security.NonceVerification.Missing -- Internal tools page; nonce verification is intentionally deferred.
+      $delete_requested = isset( $_POST['delete'] ) && 'on' === sanitize_key( wp_unslash( $_POST['delete'] ) );
+			if ( $backup_requested ) {
+        $this->backup_settings();
+      }
+
+      if ( $delete_requested ) {
+        $this->delete_settings();
+      }
+    }
+    catch (Exception $e) 
+    {  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
+      if ($e->getSeverity() === E_ERROR) {
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
+      } else if ($e->getSeverity() === E_WARNING) {
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
+      }
+      echo wp_kses_post("<br> " . esc_url($error_path));
+    }  
+    catch (ErrorException  $er)
+    {  
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+  
+      echo wp_kses_post("<br> " . esc_url($error_path));
+    }  
+    catch ( Throwable $th){
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
+    }
 	}
 
 	/**
@@ -176,32 +210,47 @@ class DMCA_Badge_Test_Page {
 	    try {
 			
 			$backups = get_option( $this->backup_option );
-			$date    = date( self::DATE_FORMAT, $timestamp );
+			$date    = gmdate( self::DATE_FORMAT, $timestamp );
 			if ( isset( $backups[ $timestamp ] ) ) {
-				update_option( $this->option, $backups[ $timestamp ] );
-				$this->notices[] = sprintf( __( "Restored backup from %s.", "dmca-badge" ), $date );
-			} else {
-				$this->notices[] = new WP_Error( "error", sprintf( __( "Backup from %s doesn't exist.", "dmca-badge" ), $date ) );
-			}
+        update_option( $this->option, $backups[ $timestamp ] );
+
+        $this->notices[] = sprintf(
+          /* translators: %s: Date and time of the restored backup. */
+          __( 'Restored backup from %s.', 'dmca-badge' ),
+          $date
+        );
+      } else {
+        $this->notices[] = new WP_Error(
+          'error',
+          sprintf(
+            /* translators: %s: Date and time of the requested backup. */
+            __( 'Backup from %s doesn\'t exist.', 'dmca-badge' ),
+            $date
+          )
+        );
+      }
         }
         catch (Exception $e) 
         {  
-          echo 'Exception Message: ' .$e->getMessage();  
+          echo esc_html('Exception Message: ' . $e->getMessage());
+  
           if ($e->getSeverity() === E_ERROR) {
-              echo("E_ERROR triggered.\n");
+              echo esc_html("E_ERROR triggered." . PHP_EOL);
           } else if ($e->getSeverity() === E_WARNING) {
-              echo("E_WARNING triggered.\n");
+              echo esc_html("E_WARNING triggered." . PHP_EOL);
           }
-          echo "<br> $error_path";
+          echo wp_kses_post("<br> " . esc_url($error_path));
         }  
         catch (ErrorException  $er)
         {  
-          echo 'ErrorException Message: ' .$er->getMessage();  
-          echo "<br> $error_path";
+          echo esc_html('ErrorException Message: ' . $er->getMessage());
+  
+          echo wp_kses_post("<br> " . esc_url($error_path));
         }  
         catch ( Throwable $th){
-          echo 'ErrorException Message: ' .$th->getMessage();
-          echo "<br> $error_path";
+          echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+          echo wp_kses_post("<br> " . esc_url($error_path));
         }
 	}
 
@@ -214,22 +263,25 @@ class DMCA_Badge_Test_Page {
         }
         catch (Exception $e) 
         {  
-          echo 'Exception Message: ' .$e->getMessage();  
+          echo esc_html('Exception Message: ' . $e->getMessage());
+  
           if ($e->getSeverity() === E_ERROR) {
-              echo("E_ERROR triggered.\n");
+              echo esc_html("E_ERROR triggered." . PHP_EOL);
           } else if ($e->getSeverity() === E_WARNING) {
-              echo("E_WARNING triggered.\n");
+              echo esc_html("E_WARNING triggered." . PHP_EOL);
           }
-          echo "<br> $error_path";
+          echo wp_kses_post("<br> " . esc_url($error_path));
         }  
         catch (ErrorException  $er)
         {  
-          echo 'ErrorException Message: ' .$er->getMessage();  
-          echo "<br> $error_path";
+          echo esc_html('ErrorException Message: ' . $er->getMessage());
+  
+          echo wp_kses_post("<br> " . esc_url($error_path));
         }  
         catch ( Throwable $th){
-          echo 'ErrorException Message: ' .$th->getMessage();
-          echo "<br> $error_path";
+          echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+          echo wp_kses_post("<br> " . esc_url($error_path));
         }
 	}
 
@@ -255,22 +307,25 @@ class DMCA_Badge_Test_Page {
         }
         catch (Exception $e) 
         {  
-          echo 'Exception Message: ' .$e->getMessage();  
+          echo esc_html('Exception Message: ' . $e->getMessage());
+  
           if ($e->getSeverity() === E_ERROR) {
-              echo("E_ERROR triggered.\n");
+              echo esc_html("E_ERROR triggered." . PHP_EOL);
           } else if ($e->getSeverity() === E_WARNING) {
-              echo("E_WARNING triggered.\n");
+              echo esc_html("E_WARNING triggered." . PHP_EOL);
           }
-          echo "<br> $error_path";
+          echo wp_kses_post("<br> " . esc_url($error_path));
         }  
         catch (ErrorException  $er)
         {  
-          echo 'ErrorException Message: ' .$er->getMessage();  
-          echo "<br> $error_path";
+          echo esc_html('ErrorException Message: ' . $er->getMessage());
+  
+          echo wp_kses_post("<br> " . esc_url($error_path));
         }  
         catch ( Throwable $th){
-          echo 'ErrorException Message: ' .$th->getMessage();
-          echo "<br> $error_path";
+          echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+          echo wp_kses_post("<br> " . esc_url($error_path));
         }
 	}
 
@@ -284,26 +339,29 @@ class DMCA_Badge_Test_Page {
 			
 			deactivate_plugins( plugin_basename( DMCA_BADGE_DIR . "/dmca-badge.php" ) );
 			delete_option( $this->option );
-			wp_redirect( admin_url( "plugins.php?deactivate=true" ) );
+			wp_safe_redirect( admin_url( "plugins.php?deactivate=true" ) );
         }
         catch (Exception $e) 
         {  
-          echo 'Exception Message: ' .$e->getMessage();  
+          echo esc_html('Exception Message: ' . $e->getMessage());
+  
           if ($e->getSeverity() === E_ERROR) {
-              echo("E_ERROR triggered.\n");
+              echo esc_html("E_ERROR triggered." . PHP_EOL);
           } else if ($e->getSeverity() === E_WARNING) {
-              echo("E_WARNING triggered.\n");
+              echo esc_html("E_WARNING triggered." . PHP_EOL);
           }
-          echo "<br> $error_path";
+          echo wp_kses_post("<br> " . esc_url($error_path));
         }  
         catch (ErrorException  $er)
         {  
-          echo 'ErrorException Message: ' .$er->getMessage();  
-          echo "<br> $error_path";
+          echo esc_html('ErrorException Message: ' . $er->getMessage());
+  
+          echo wp_kses_post("<br> " . esc_url($error_path));
         }  
         catch ( Throwable $th){
-          echo 'ErrorException Message: ' .$th->getMessage();
-          echo "<br> $error_path";
+          echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+          echo wp_kses_post("<br> " . esc_url($error_path));
         }
 	}
 
@@ -323,27 +381,30 @@ class DMCA_Badge_Test_Page {
 					$class = "updated";
 					$msg   = $notice;
 				}
-				echo "<div class='{$class}'><p>$msg</p></div>";
+				echo "<div class='" . esc_html($class) . "'><p>" . esc_html($msg) . "</p></div>";
 			}
         }
         catch (Exception $e) 
         {  
-          echo 'Exception Message: ' .$e->getMessage();  
+          echo esc_html('Exception Message: ' . $e->getMessage());
+  
           if ($e->getSeverity() === E_ERROR) {
-              echo("E_ERROR triggered.\n");
+              echo esc_html("E_ERROR triggered." . PHP_EOL);
           } else if ($e->getSeverity() === E_WARNING) {
-              echo("E_WARNING triggered.\n");
+              echo esc_html("E_WARNING triggered." . PHP_EOL);
           }
-          echo "<br> $error_path";
+          echo wp_kses_post("<br> " . esc_url($error_path));
         }  
         catch (ErrorException  $er)
         {  
-          echo 'ErrorException Message: ' .$er->getMessage();  
-          echo "<br> $error_path";
+          echo esc_html('ErrorException Message: ' . $er->getMessage());
+  
+          echo wp_kses_post("<br> " . esc_url($error_path));
         }  
         catch ( Throwable $th){
-          echo 'ErrorException Message: ' .$th->getMessage();
-          echo "<br> $error_path";
+          echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+          echo wp_kses_post("<br> " . esc_url($error_path));
         }
 	}
 
@@ -351,64 +412,108 @@ class DMCA_Badge_Test_Page {
 	 * Out the test page html to the screen and process form if necessary.
 	 */
 	function show_page() {
-        $error_path = plugin_dir_url(__FILE__) ;
-	    try {
+    $error_path = plugin_dir_url(__FILE__) ;
+    try {
 					
 
-				$action = admin_url( "tools.php?page={$this->page_slug}" );
+      $action = add_query_arg(
+        'page',
+        sanitize_key( $this->page_slug ),
+        admin_url( 'tools.php' )
+      );
+      ?>
 
-					echo <<<HTML
-				<div class="wrap">
-				<div id="icon-tools" class="icon32"><br></div>
-				<h2>DMCA Badge Test Page</h2>
-				<form action="{$action}" method="POST">
-					<h3>Settings</h3>
-					<p>
-					<input name="backup" id="backup" type="checkbox"> <label for="backup">Backup</label><br>
-					<input name="delete" id="delete" type="checkbox"> <label for="delete">Delete - DMCA Badge plugin will be deactivated and you'll be redirected to plugins page.</label>
-					</p>
-					<input type="submit" class="button-primary"/>
-				</form>
-				</div>
-			HTML;
+      <div class="wrap">
+        <div id="icon-tools" class="icon32"><br></div>
 
-					$backup_options = $this->get_backup_options();
+        <h2><?php esc_html_e( 'DMCA Badge Test Page', 'dmca-badge' ); ?></h2>
 
-					$backups_html = <<<HTML
-				<div class="wrap">
-					<form action="{$action}" method="POST">
-						<h3>Backups</h3>
-						{$backup_options}
-						<p>
-							<input type="submit" class="button-primary" name="submit" value="Restore" />
-							<input type="submit" class="button-secondary" name="submit" value="Delete Backups" />
-						</p>
-					</form>
-				</div>
-			HTML;
+        <form action="<?php echo esc_url( $action ); ?>" method="post">
+          <h3><?php esc_html_e( 'Settings', 'dmca-badge' ); ?></h3>
 
-					if ( $backup_options ) {
-						echo $backups_html;
-					}
+          <p>
+            <input name="backup" id="backup" type="checkbox">
+            <label for="backup">
+              <?php esc_html_e( 'Backup', 'dmca-badge' ); ?>
+            </label>
+            <br>
+
+            <input name="delete" id="delete" type="checkbox">
+            <label for="delete">
+              <?php
+              esc_html_e(
+                'Delete - DMCA Badge plugin will be deactivated and you\'ll be redirected to the plugins page.',
+                'dmca-badge'
+              );
+              ?>
+            </label>
+          </p>
+
+          <input
+            type="submit"
+            class="button-primary"
+            value="<?php echo esc_attr__( 'Submit', 'dmca-badge' ); ?>"
+          />
+        </form>
+      </div>
+
+      <?php
+
+      $backup_options = $this->get_backup_options();
+
+      if ( $backup_options ) {
+        ?>
+        <div class="wrap">
+          <form action="<?php echo esc_url( $action ); ?>" method="post">
+            <h3><?php esc_html_e( 'Backups', 'dmca-badge' ); ?></h3>
+
+            <?php
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Backup options HTML is generated internally and escaped at its source.
+            echo $backup_options;
+            ?>
+
+            <p>
+              <input
+                type="submit"
+                class="button-primary"
+                name="submit"
+                value="Restore"
+              />
+
+              <input
+                type="submit"
+                class="button-secondary"
+                name="submit"
+                value="Delete Backups"
+              />
+            </p>
+          </form>
+        </div>
+        <?php
+      }
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+  
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 
 	}
@@ -425,7 +530,7 @@ class DMCA_Badge_Test_Page {
 			$backups = get_option( $this->backup_option );
 			if ( is_array( $backups ) && count( $backups ) > 0 ) {
 				foreach ( $backups as $timestamp => $backup ) {
-					$label     = date( self::DATE_FORMAT, $timestamp );
+					$label     = gmdate( self::DATE_FORMAT, $timestamp );
 					$options[] = "<input type='radio' name='backups' id='{$timestamp}' value='{$timestamp}' /> <label for='{$timestamp}'>{$label}</label><br>";
 				}
 			}
@@ -434,22 +539,25 @@ class DMCA_Badge_Test_Page {
         }
         catch (Exception $e) 
         {  
-          echo 'Exception Message: ' .$e->getMessage();  
+          echo esc_html('Exception Message: ' . $e->getMessage());
+  
           if ($e->getSeverity() === E_ERROR) {
-              echo("E_ERROR triggered.\n");
+              echo esc_html("E_ERROR triggered." . PHP_EOL);
           } else if ($e->getSeverity() === E_WARNING) {
-              echo("E_WARNING triggered.\n");
+              echo esc_html("E_WARNING triggered." . PHP_EOL);
           }
-          echo "<br> $error_path";
+          echo wp_kses_post("<br> " . esc_url($error_path));
         }  
         catch (ErrorException  $er)
         {  
-          echo 'ErrorException Message: ' .$er->getMessage();  
-          echo "<br> $error_path";
+          echo esc_html('ErrorException Message: ' . $er->getMessage());
+  
+          echo wp_kses_post("<br> " . esc_url($error_path));
         }  
         catch ( Throwable $th){
-          echo 'ErrorException Message: ' .$th->getMessage();
-          echo "<br> $error_path";
+          echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+          echo wp_kses_post("<br> " . esc_url($error_path));
         }
 	}
 }

@@ -1,4 +1,9 @@
 <?php
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /**
  * List pages class
  */
@@ -26,22 +31,25 @@ class DMCA_Pages_list_table extends WP_List_Table {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -55,29 +63,32 @@ class DMCA_Pages_list_table extends WP_List_Table {
 		$error_path = plugin_dir_url(__FILE__) ;
 		try {
 
-			echo '<tr class="single-row single-row-' . $item->ID . ' dmca-status-' . get_dmca_submission_status_raw( $item->ID ) . '" data-row-id="' . $item->ID . '">';
+			echo '<tr class="single-row single-row-' . esc_attr( $item->ID ) . ' dmca-status-' . esc_attr( get_dmca_submission_status_raw( $item->ID ) ) . '" data-row-id="' . esc_attr( $item->ID ) . '">';
 			$this->single_row_columns( $item );
 			echo '</tr>';
 			
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -106,22 +117,21 @@ class DMCA_Pages_list_table extends WP_List_Table {
 				'posts_per_page' => $per_page,
 				'offset'         => ( $this->get_pagenum() - 1 ) * $per_page,
 			);
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only admin filter.
+			if ( isset( $_GET['ds'] ) ) { $ds = sanitize_text_field( wp_unslash( $_GET['ds'] ) );
 
-			if ( isset( $_REQUEST['ds'] ) && sanitize_text_field( $_REQUEST['ds'] ) === 'sent' ) {
-
-				$args['meta_query'][] = array(
-					'key'     => 'dmca_submission_status',
-					'value'   => sanitize_text_field( $_GET['ds'] ),
-					'compare' => '=',
-				);
-			}
-
-			if ( isset( $_REQUEST['ds'] ) && sanitize_text_field( $_REQUEST['ds'] ) === 'not_sent' ) {
-
-				$args['meta_query'][] = array(
-					'key'     => 'dmca_submission_status',
-					'compare' => 'NOT EXISTS',
-				);
+				if ( 'sent' === $ds ) {
+					$args['meta_query'][] = array(
+						'key'     => 'dmca_submission_status',
+						'value'   => $ds,
+						'compare' => '=',
+					);
+				} elseif ( 'not_sent' === $ds ) {
+					$args['meta_query'][] = array(
+						'key'     => 'dmca_submission_status',
+						'compare' => 'NOT EXISTS',
+					);
+				}
 			}
 
 			$q           = new WP_Query();
@@ -139,22 +149,25 @@ class DMCA_Pages_list_table extends WP_List_Table {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -174,15 +187,15 @@ class DMCA_Pages_list_table extends WP_List_Table {
 
 			echo '<div class="alignleft actions filter-by-form">';
 			echo "<select name='ds' id='ds'>";
-			printf( "<option value=''>%s</option>", __( 'Select Submission Status', 'dmca-badge' ) );
-			printf( "<option value='sent'>%s</option>", __( 'Sent', 'dmca-badge' ) );
-			printf( "<option value='not_sent'>%s</option>", __( 'Not Sent', 'dmca-badge' ) );
+			printf( "<option value=''>%s</option>", esc_html(__( 'Select Submission Status', 'dmca-badge' )) );
+			printf( "<option value='sent'>%s</option>", esc_html(__( 'Sent', 'dmca-badge' )) );
+			printf( "<option value='not_sent'>%s</option>", esc_html(__( 'Not Sent', 'dmca-badge' )) );
 			echo "</select>";
 
-			submit_button( __( 'Filter pages', 'dmca-badge' ), '', '', false, array( 'id' => 'filter-submit' ) );
+			submit_button( esc_html(__( 'Filter pages', 'dmca-badge' )), '', '', false, array( 'id' => 'filter-submit' ) );
 
 			printf( '<div class="add-all-pages" data-token="%s" data-ajaxurl="%s">%s</div>',
-				dmca_get_login_token(), admin_url( 'admin-ajax.php' ), esc_html__( 'Submit all Pages', 'dmca-badge' )
+				esc_html( dmca_get_login_token() ), esc_html( admin_url( 'admin-ajax.php' ) ), esc_html__( 'Submit all Pages', 'dmca-badge' )
 			);
 
 			echo "</div>";
@@ -190,22 +203,25 @@ class DMCA_Pages_list_table extends WP_List_Table {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -226,30 +242,33 @@ class DMCA_Pages_list_table extends WP_List_Table {
 
 			ob_start();
 
-			printf( '<span>%s</span>', get_the_time( 'F j, Y g:i A', $item ) );
-			printf( '<div class="row-actions"><span class="timeago-view">%s</span></div>', $human_time_diff );
+			printf( '<span>%s</span>', esc_html( get_the_time( 'F j, Y g:i A', $item ) ) );
+			printf( '<div class="row-actions"><span class="timeago-view">%s</span></div>', esc_html($human_time_diff) );
 
 			return ob_get_clean();
 			
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -271,22 +290,25 @@ class DMCA_Pages_list_table extends WP_List_Table {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -307,15 +329,17 @@ class DMCA_Pages_list_table extends WP_List_Table {
 
 			ob_start();
 
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Internal trusted HTML.
 			printf( '<strong><span>%3$s</span> <span class="dashicons dashicons-minus"></span> <a target="_blank" class="row-title" href="%1$s">%2$s</a></strong>',
 				esc_url( $edit_link ),
 				esc_html( get_the_title( $item->ID ) ),
+				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Internal trusted HTML.
 				ucfirst( $item->post_type )
 			);
 			printf( '<div class="row-actions">' );
-			printf( '<span class="edit"><a target="_blank" href="%1$s">%2$s</a></span>  | ', $edit_link, __( 'Edit', 'dmca-badge' ) );
-			printf( '<span class="view"><a target="_blank" href="%1$s">%2$s</a></span> | ', get_the_permalink( $item->ID ), __( 'View', 'dmca-badge' ) );
-			printf( '<span class="add">%s</span>', __( 'Submit for Protection', 'dmca-badge' ) );
+			printf( '<span class="edit"><a target="_blank" href="%1$s">%2$s</a></span>  | ', esc_html( $edit_link ), esc_html( __( 'Edit', 'dmca-badge' ) ) );
+			printf( '<span class="view"><a target="_blank" href="%1$s">%2$s</a></span> | ', esc_html( get_the_permalink( $item->ID ) ), esc_html( __( 'View', 'dmca-badge' ) ) );
+			printf( '<span class="add">%s</span>', esc_html( __( 'Submit for Protection', 'dmca-badge' ) ) );
 			printf( '</div>' );
 
 			return ob_get_clean();
@@ -323,22 +347,25 @@ class DMCA_Pages_list_table extends WP_List_Table {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -361,22 +388,25 @@ class DMCA_Pages_list_table extends WP_List_Table {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -398,22 +428,25 @@ class DMCA_Pages_list_table extends WP_List_Table {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -432,22 +465,25 @@ class DMCA_Pages_list_table extends WP_List_Table {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -472,22 +508,25 @@ class DMCA_Pages_list_table extends WP_List_Table {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 
@@ -519,22 +558,25 @@ class DMCA_Pages_list_table extends WP_List_Table {
 		}
 		catch (Exception $e) 
 		{  
-		  echo 'Exception Message: ' .$e->getMessage();  
+		  echo esc_html('Exception Message: ' . $e->getMessage());
+  
 		  if ($e->getSeverity() === E_ERROR) {
-			  echo("E_ERROR triggered.\n");
+			  echo esc_html("E_ERROR triggered." . PHP_EOL);
 		  } else if ($e->getSeverity() === E_WARNING) {
-			  echo("E_WARNING triggered.\n");
+			  echo esc_html("E_WARNING triggered." . PHP_EOL);
 		  }
-		  echo "<br> $error_path";
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch (ErrorException  $er)
 		{  
-		  echo 'ErrorException Message: ' .$er->getMessage();  
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}  
 		catch ( Throwable $th){
-		  echo 'ErrorException Message: ' .$th->getMessage();
-		  echo "<br> $error_path";
+		  echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+		  echo wp_kses_post("<br> " . esc_url($error_path));
 		}
 	}
 }

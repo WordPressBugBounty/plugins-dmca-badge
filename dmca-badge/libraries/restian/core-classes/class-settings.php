@@ -24,7 +24,7 @@ class RESTian_Settings {
 
   function __construct( $settings_name, $args = array() ) {
 
-    $this->modifier_name = $settings_name;
+    $this->settings_name = $settings_name;
 
     if ( ! is_object( $args ) && ! is_array( $args ) ) {
       throw new Exception( 'Must pass a string, array or object for $args when creating a new ' . __CLASS__ . '.' );

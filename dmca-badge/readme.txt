@@ -1,11 +1,13 @@
-=== DMCA Protection Badge ===
+=== DMCA Website Protection Badge ===
 Contributors: dmca, NewClarity
-Tags: dmca, badge, takedown, copyright, protection, dmca.com, plagiarism, content theft
-Requires at least: 6.0
-Tested up to: 6.8.2
+Tags: dmca, badge, takedown, copyright, protection
+Requires at least: 6.6
+Tested up to: 7.0
 Plugin URI: https://www.dmca.com/WordPress
-Stable tag: 2.1.58
+Stable tag: 2.3.0
 Requires PHP: 8.0
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 The DMCA Protection plugin for WordPress lets you install protection badges on your site in order to deter content thieves and protect your content 
 
@@ -68,6 +70,20 @@ Email: takedowns@dmca.com with your case number and request your free takedown.
 Fixed 5.2.x compatibility and upgraded dependent libraries
 
 == Changelog ==
+
+= 2.3.0 =
+* Updated plugin compatibility for PHP 8.3 and the latest WordPress version.
+* Improved compatibility with the latest WordPress release and the previous four supported WordPress versions.
+* Resolved Sidecar framework compatibility issues affecting plugin initialization and execution.
+* Fixed WP-CLI compatibility issues related to plugin activation, deactivation, and command execution.
+* Replaced deprecated PHP functionality to ensure compatibility with newer PHP versions.
+* Improved bundled framework compatibility and overall plugin stability.
+* Addressed WordPress Coding Standards and Plugin Check recommendations.
+* Fixed various compatibility, stability, and runtime issues throughout the plugin.
+* Improved plugin initialization, translation loading, and lifecycle handling.
+* Performed comprehensive compatibility testing and validation across supported environments.
+* General code quality improvements, maintenance updates, and bug fixes.
+
 = 2.1.58 =
 removed google ga  
 

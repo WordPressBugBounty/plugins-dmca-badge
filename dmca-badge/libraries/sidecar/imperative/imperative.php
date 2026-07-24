@@ -1,4 +1,9 @@
 <?php
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /**
  * The Missing require_library() for Embedded Libraries within WordPress Plugins and Themes.
  *
@@ -74,8 +79,10 @@ if ( ! class_exists( 'WP_Library_Manager' ) ) {
 
 
         if ( self::$_this instanceof WP_Library_Manager ) {
-          $message = __( '%s is a singleton class and cannot be instantiated more than once. Use WP_Library_Manager::this() instead.', 'imperative' );
-          echo '<div class="error"><p><strong>ERROR</strong>: ' . sprintf( $message, get_class( $this ) ) . '</p></div>';
+
+          // translators: %s is the class name.
+          $message = __( '%s is a singleton class and cannot be instantiated more than once. Use WP_Library_Manager::this() instead.', 'dmca-badge' );
+          echo '<div class="error"><p><strong>ERROR</strong>: ' . sprintf( esc_html( $message ), esc_html( get_class( $this ) ) ) . '</p></div>';
         }
         /*
          *  WP_Library_Manager::me() is needed to allow plugins to remove hooks if needed.
@@ -88,30 +95,43 @@ if ( ! class_exists( 'WP_Library_Manager' ) ) {
         if ( $this->is_plugin_activation() )
           add_action( 'activate_plugin', array( $this, 'activate_plugin' ) );
 
-        if ( $this->is_plugin_uninstall() ) {
-          foreach( $_GET['checked'] as $plugin ) {
-            add_action( "uninstall_{$plugin}", array( $this, 'uninstall_plugin' ) );
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- This is a list of plugins being uninstalled, not a security issue.
+        if ( $this->is_plugin_uninstall() && isset( $_GET['checked'] ) && is_array( $_GET['checked'] ) ) {
+
+          // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- This is a list of plugins being uninstalled, not a security issue.
+          $checked_plugins = array_map( 'sanitize_text_field', wp_unslash( $_GET['checked'] ) );
+
+          foreach ( $checked_plugins as $plugin ) {
+            $plugin = plugin_basename( $plugin );
+
+            add_action(
+              "uninstall_{$plugin}",
+              array( $this, 'uninstall_plugin' )
+            );
           }
         }
       }
       catch (Exception $e) 
       {  
-        echo 'Exception Message: ' .$e->getMessage();  
+        echo esc_html('Exception Message: ' . $e->getMessage());
+  
         if ($e->getSeverity() === E_ERROR) {
-            echo("E_ERROR triggered.\n");
+            echo esc_html("E_ERROR triggered." . PHP_EOL);
         } else if ($e->getSeverity() === E_WARNING) {
-            echo("E_WARNING triggered.\n");
+            echo esc_html("E_WARNING triggered." . PHP_EOL);
         }
-        echo "<br> $error_path";
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch (ErrorException  $er)
       {  
-        echo 'ErrorException Message: ' .$er->getMessage();  
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch ( Throwable $th){
-        echo 'ErrorException Message: ' .$th->getMessage();
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }
     }
 
@@ -137,22 +157,25 @@ if ( ! class_exists( 'WP_Library_Manager' ) ) {
       }
       catch (Exception $e) 
       {  
-        echo 'Exception Message: ' .$e->getMessage();  
+        echo esc_html('Exception Message: ' . $e->getMessage());
+  
         if ($e->getSeverity() === E_ERROR) {
-            echo("E_ERROR triggered.\n");
+            echo esc_html("E_ERROR triggered." . PHP_EOL);
         } else if ($e->getSeverity() === E_WARNING) {
-            echo("E_WARNING triggered.\n");
+            echo esc_html("E_WARNING triggered." . PHP_EOL);
         }
-        echo "<br> $error_path";
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch (ErrorException  $er)
       {  
-        echo 'ErrorException Message: ' .$er->getMessage();  
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch ( Throwable $th){
-        echo 'ErrorException Message: ' .$th->getMessage();
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }
 
     }
@@ -175,29 +198,33 @@ if ( ! class_exists( 'WP_Library_Manager' ) ) {
         if ( '/' != $loader_file[0] )
           $loader_file = dirname( $plugin_filepath ) . "/{$loader_file}";
         if ( ! file_exists( $loader_file ) ) {
-          $message = __( '%s specified as a WP_Library_Manager loader file for the %s plugin does not exist.', 'imperative' );
-          echo '<div class="error"><p><strong>ERROR</strong>: ' . sprintf( $message, $loader_file, $plugin_filepath ) . '</p></div>';
+          // translators: %1$s is the loader file name, %2$s is the plugin file path.
+          $message = __( '%1$s specified as a WP_Library_Manager loader file for the %2$s plugin does not exist.', 'dmca-badge' );
+          echo '<div class="error"><p><strong>ERROR</strong>: ' . sprintf( esc_html( $message ),  esc_html( $loader_file ), esc_html( $plugin_filepath ) ) . '</p></div>';
         }
         return $loader_file;
       }
       catch (Exception $e) 
       {  
-        echo 'Exception Message: ' .$e->getMessage();  
+        echo esc_html('Exception Message: ' . $e->getMessage());
+  
         if ($e->getSeverity() === E_ERROR) {
-            echo("E_ERROR triggered.\n");
+            echo esc_html("E_ERROR triggered." . PHP_EOL);
         } else if ($e->getSeverity() === E_WARNING) {
-            echo("E_WARNING triggered.\n");
+            echo esc_html("E_WARNING triggered." . PHP_EOL);
         }
-        echo "<br> $error_path";
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch (ErrorException  $er)
       {  
-        echo 'ErrorException Message: ' .$er->getMessage();  
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch ( Throwable $th){
-        echo 'ErrorException Message: ' .$th->getMessage();
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }
     }
 
@@ -233,22 +260,25 @@ if ( ! class_exists( 'WP_Library_Manager' ) ) {
       }
       catch (Exception $e) 
       {  
-        echo 'Exception Message: ' .$e->getMessage();  
+        echo esc_html('Exception Message: ' . $e->getMessage());
+  
         if ($e->getSeverity() === E_ERROR) {
-            echo("E_ERROR triggered.\n");
+            echo esc_html("E_ERROR triggered." . PHP_EOL);
         } else if ($e->getSeverity() === E_WARNING) {
-            echo("E_WARNING triggered.\n");
+            echo esc_html("E_WARNING triggered." . PHP_EOL);
         }
-        echo "<br> $error_path";
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch (ErrorException  $er)
       {  
-        echo 'ErrorException Message: ' .$er->getMessage();  
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch ( Throwable $th){
-        echo 'ErrorException Message: ' .$th->getMessage();
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }
     }
 
@@ -262,22 +292,25 @@ if ( ! class_exists( 'WP_Library_Manager' ) ) {
       }
       catch (Exception $e) 
       {  
-        echo 'Exception Message: ' .$e->getMessage();  
+        echo esc_html('Exception Message: ' . $e->getMessage());
+  
         if ($e->getSeverity() === E_ERROR) {
-            echo("E_ERROR triggered.\n");
+            echo esc_html("E_ERROR triggered." . PHP_EOL);
         } else if ($e->getSeverity() === E_WARNING) {
-            echo("E_WARNING triggered.\n");
+            echo esc_html("E_WARNING triggered." . PHP_EOL);
         }
-        echo "<br> $error_path";
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch (ErrorException  $er)
       {  
-        echo 'ErrorException Message: ' .$er->getMessage();  
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch ( Throwable $th){
-        echo 'ErrorException Message: ' .$th->getMessage();
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }
     }
 
@@ -290,22 +323,25 @@ if ( ! class_exists( 'WP_Library_Manager' ) ) {
       }
       catch (Exception $e) 
       {  
-        echo 'Exception Message: ' .$e->getMessage();  
+        echo esc_html('Exception Message: ' . $e->getMessage());
+  
         if ($e->getSeverity() === E_ERROR) {
-            echo("E_ERROR triggered.\n");
+            echo esc_html("E_ERROR triggered." . PHP_EOL);
         } else if ($e->getSeverity() === E_WARNING) {
-            echo("E_WARNING triggered.\n");
+            echo esc_html("E_WARNING triggered." . PHP_EOL);
         }
-        echo "<br> $error_path";
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch (ErrorException  $er)
       {  
-        echo 'ErrorException Message: ' .$er->getMessage();  
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch ( Throwable $th){
-        echo 'ErrorException Message: ' .$th->getMessage();
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }
     }
 
@@ -321,22 +357,25 @@ if ( ! class_exists( 'WP_Library_Manager' ) ) {
       }
       catch (Exception $e) 
       {  
-        echo 'Exception Message: ' .$e->getMessage();  
+        echo esc_html('Exception Message: ' . $e->getMessage());
+  
         if ($e->getSeverity() === E_ERROR) {
-            echo("E_ERROR triggered.\n");
+            echo esc_html("E_ERROR triggered." . PHP_EOL);
         } else if ($e->getSeverity() === E_WARNING) {
-            echo("E_WARNING triggered.\n");
+            echo esc_html("E_WARNING triggered." . PHP_EOL);
         }
-        echo "<br> $error_path";
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch (ErrorException  $er)
       {  
-        echo 'ErrorException Message: ' .$er->getMessage();  
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch ( Throwable $th){
-        echo 'ErrorException Message: ' .$th->getMessage();
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }
     }
 
@@ -381,15 +420,16 @@ if ( ! class_exists( 'WP_Library_Manager' ) ) {
                     $newer_version =  $other_version;
                   }
 
+                  // translators: %1$s is the plugin name, %2$s is the plugin version, %3$s is the library name, %4$s is the other plugin version, %5$s is the other plugin name, %6$s is the plugin name again, %7$s is the other plugin name again, %8$s is the plugin name again, %9$s is the guilty plugin name, %10$s is the newer version number, and %11$s is the library name again.
                   $message = sprintf( __( '<p><strong>Plugin Activation Error:</strong> The plugin you trying to activate named
-                    <strong>%s</strong> contains <strong>version %s</strong> of the <strong>%s</strong> embedded library
-                    and it conflicts with <strong>version %s</strong> of the same library
-                    used by the <strong>%s</strong> plugin which your site has active.</p>
+                    <strong>%1$s</strong> contains <strong>version %2$s</strong> of the <strong>%3$s</strong> embedded library
+                    and it conflicts with <strong>version %4$s</strong> of the same library
+                    used by the <strong>%5$s</strong> plugin which your site has active.</p>
                     <p>To resolve this issue you can:</p>
-                    <p>&nbsp;&nbsp;&nbsp;1.) Choose not to use the <strong>%s</strong> plugin. If so you don\'t need to do anything.</p>
-                    <p>&nbsp;&nbsp;&nbsp;2.) Deactivate the <strong>%s</strong> plugin and choose to activate the <strong>%s</strong> plugin instead.</p>
-                    <p>&nbsp;&nbsp;&nbsp;3.) Contact the author(s) of the <strong>%s</strong> plugin via their support page and ask them to upgrade to <strong>version %s</strong> of the <strong>%s</strong> embedded library.</p>',
-                    'imperative' ),
+                    <p>&nbsp;&nbsp;&nbsp;1.) Choose not to use the <strong>%6$s</strong> plugin. If so you don\'t need to do anything.</p>
+                    <p>&nbsp;&nbsp;&nbsp;2.) Deactivate the <strong>%7$s</strong> plugin and choose to activate the <strong>%8$s</strong> plugin instead.</p>
+                    <p>&nbsp;&nbsp;&nbsp;3.) Contact the author(s) of the <strong>%9$s</strong> plugin via their support page and ask them to upgrade to <strong>version %10$s</strong> of the <strong>%11$s</strong> embedded library.</p>',
+                    'dmca-badge' ),
                     $this_plugin['Name'], $this_version,
                     $library->library_name,
                     $other_version, $other_plugin['Name'],
@@ -421,7 +461,7 @@ if ( ! class_exists( 'WP_Library_Manager' ) ) {
 
             if ( ! $this->is_plugin_error_scrape() ) {
               $redirect = self_admin_url( "plugins.php?error=true&plugin={$this_plugin_slug}&plugin_status={$status}&paged={$page}" );
-              wp_redirect( add_query_arg( '_error_nonce', wp_create_nonce( 'plugin-activation-error_' . $this_plugin_slug ), $redirect ) );
+              wp_safe_redirect( add_query_arg( '_error_nonce', wp_create_nonce( 'plugin-activation-error_' . $this_plugin_slug ), $redirect ) );
               exit;
             }
 
@@ -435,22 +475,25 @@ if ( ! class_exists( 'WP_Library_Manager' ) ) {
       }
       catch (Exception $e) 
       {  
-        echo 'Exception Message: ' .$e->getMessage();  
+        echo esc_html('Exception Message: ' . $e->getMessage());
+  
         if ($e->getSeverity() === E_ERROR) {
-            echo("E_ERROR triggered.\n");
+            echo esc_html("E_ERROR triggered." . PHP_EOL);
         } else if ($e->getSeverity() === E_WARNING) {
-            echo("E_WARNING triggered.\n");
+            echo esc_html("E_WARNING triggered." . PHP_EOL);
         }
-        echo "<br> $error_path";
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch (ErrorException  $er)
       {  
-        echo 'ErrorException Message: ' .$er->getMessage();  
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch ( Throwable $th){
-        echo 'ErrorException Message: ' .$th->getMessage();
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }
     }
 
@@ -465,22 +508,25 @@ if ( ! class_exists( 'WP_Library_Manager' ) ) {
       }
       catch (Exception $e) 
       {  
-        echo 'Exception Message: ' .$e->getMessage();  
+        echo esc_html('Exception Message: ' . $e->getMessage());
+  
         if ($e->getSeverity() === E_ERROR) {
-            echo("E_ERROR triggered.\n");
+            echo esc_html("E_ERROR triggered." . PHP_EOL);
         } else if ($e->getSeverity() === E_WARNING) {
-            echo("E_WARNING triggered.\n");
+            echo esc_html("E_WARNING triggered." . PHP_EOL);
         }
-        echo "<br> $error_path";
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch (ErrorException  $er)
       {  
-        echo 'ErrorException Message: ' .$er->getMessage();  
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch ( Throwable $th){
-        echo 'ErrorException Message: ' .$th->getMessage();
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }
     }
 
@@ -494,22 +540,25 @@ if ( ! class_exists( 'WP_Library_Manager' ) ) {
       }
       catch (Exception $e) 
       {  
-        echo 'Exception Message: ' .$e->getMessage();  
+        echo esc_html('Exception Message: ' . $e->getMessage());
+  
         if ($e->getSeverity() === E_ERROR) {
-            echo("E_ERROR triggered.\n");
+            echo esc_html("E_ERROR triggered." . PHP_EOL);
         } else if ($e->getSeverity() === E_WARNING) {
-            echo("E_WARNING triggered.\n");
+            echo esc_html("E_WARNING triggered." . PHP_EOL);
         }
-        echo "<br> $error_path";
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch (ErrorException  $er)
       {  
-        echo 'ErrorException Message: ' .$er->getMessage();  
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch ( Throwable $th){
-        echo 'ErrorException Message: ' .$th->getMessage();
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }
     }
 
@@ -522,22 +571,25 @@ if ( ! class_exists( 'WP_Library_Manager' ) ) {
       }
       catch (Exception $e) 
       {  
-        echo 'Exception Message: ' .$e->getMessage();  
+        echo esc_html('Exception Message: ' . $e->getMessage());
+  
         if ($e->getSeverity() === E_ERROR) {
-            echo("E_ERROR triggered.\n");
+            echo esc_html("E_ERROR triggered." . PHP_EOL);
         } else if ($e->getSeverity() === E_WARNING) {
-            echo("E_WARNING triggered.\n");
+            echo esc_html("E_WARNING triggered." . PHP_EOL);
         }
-        echo "<br> $error_path";
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch (ErrorException  $er)
       {  
-        echo 'ErrorException Message: ' .$er->getMessage();  
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch ( Throwable $th){
-        echo 'ErrorException Message: ' .$th->getMessage();
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }
     }
 
@@ -550,28 +602,31 @@ if ( ! class_exists( 'WP_Library_Manager' ) ) {
 
         $activation_error = $this->get_activation_error();
         if ( $activation_error ) {
-          echo '<div class="error">' . $activation_error .'</div>';
+          echo '<div class="error">' . esc_html( $activation_error ) .'</div>';
         }
         $this->delete_activation_error();
       }
       catch (Exception $e) 
       {  
-        echo 'Exception Message: ' .$e->getMessage();  
+        echo esc_html('Exception Message: ' . $e->getMessage());
+  
         if ($e->getSeverity() === E_ERROR) {
-            echo("E_ERROR triggered.\n");
+            echo esc_html("E_ERROR triggered." . PHP_EOL);
         } else if ($e->getSeverity() === E_WARNING) {
-            echo("E_WARNING triggered.\n");
+            echo esc_html("E_WARNING triggered." . PHP_EOL);
         }
-        echo "<br> $error_path";
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch (ErrorException  $er)
       {  
-        echo 'ErrorException Message: ' .$er->getMessage();  
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch ( Throwable $th){
-        echo 'ErrorException Message: ' .$th->getMessage();
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }
     }
 
@@ -601,14 +656,18 @@ if ( ! class_exists( 'WP_Library_Manager' ) ) {
           if ( $this->is_plugin_activation( $virtual_filepath ) ) {
             $plugin_file = WP_PLUGIN_DIR . "/{$virtual_filepath}";
           } else if ( $this->is_plugin_uninstall( $virtual_filepath ) ) {
-            if ( isset( $_GET['checked'] ) )
-                foreach( $_GET['checked'] as $plugin_slug ) {
-                  $virtual_filepath = WP_PLUGIN_DIR . "/{$plugin_slug}";
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- This is a list of plugins being uninstalled, not a security issue.
+            if ( isset( $_GET['checked'] ) && is_array( $_GET['checked'] ) ) {
+              // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- This is a list of plugins being uninstalled, not a security issue.
+              $checked_plugins = array_map( 'sanitize_text_field', wp_unslash( $_GET['checked'] ) );
+              foreach( $checked_plugins as $plugin_slug ) {
+                $virtual_filepath = WP_PLUGIN_DIR . "/{$plugin_slug}";
                 if ( realpath( $virtual_filepath ) == $plugin_file ) {
                   $plugin_file = $virtual_filepath;
                   break;
                 }
               }
+            }
           } else if ( isset( $virtual_filepath ) ) {
             $plugin_file = $virtual_filepath;
           }
@@ -617,22 +676,25 @@ if ( ! class_exists( 'WP_Library_Manager' ) ) {
       }
       catch (Exception $e) 
       {  
-        echo 'Exception Message: ' .$e->getMessage();  
+        echo esc_html('Exception Message: ' . $e->getMessage());
+  
         if ($e->getSeverity() === E_ERROR) {
-            echo("E_ERROR triggered.\n");
+            echo esc_html("E_ERROR triggered." . PHP_EOL);
         } else if ($e->getSeverity() === E_WARNING) {
-            echo("E_WARNING triggered.\n");
+            echo esc_html("E_WARNING triggered." . PHP_EOL);
         }
-        echo "<br> $error_path";
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch (ErrorException  $er)
       {  
-        echo 'ErrorException Message: ' .$er->getMessage();  
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch ( Throwable $th){
-        echo 'ErrorException Message: ' .$th->getMessage();
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }
     }
 
@@ -695,22 +757,25 @@ if ( ! class_exists( 'WP_Library_Manager' ) ) {
       }
       catch (Exception $e) 
       {  
-        echo 'Exception Message: ' .$e->getMessage();  
+        echo esc_html('Exception Message: ' . $e->getMessage());
+  
         if ($e->getSeverity() === E_ERROR) {
-            echo("E_ERROR triggered.\n");
+            echo esc_html("E_ERROR triggered." . PHP_EOL);
         } else if ($e->getSeverity() === E_WARNING) {
-            echo("E_WARNING triggered.\n");
+            echo esc_html("E_WARNING triggered." . PHP_EOL);
         }
-        echo "<br> $error_path";
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch (ErrorException  $er)
       {  
-        echo 'ErrorException Message: ' .$er->getMessage();  
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch ( Throwable $th){
-        echo 'ErrorException Message: ' .$th->getMessage();
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }
     }
 
@@ -728,22 +793,25 @@ if ( ! class_exists( 'WP_Library_Manager' ) ) {
       }
       catch (Exception $e) 
       {  
-        echo 'Exception Message: ' .$e->getMessage();  
+        echo esc_html('Exception Message: ' . $e->getMessage());
+  
         if ($e->getSeverity() === E_ERROR) {
-            echo("E_ERROR triggered.\n");
+            echo esc_html("E_ERROR triggered." . PHP_EOL);
         } else if ($e->getSeverity() === E_WARNING) {
-            echo("E_WARNING triggered.\n");
+            echo esc_html("E_WARNING triggered." . PHP_EOL);
         }
-        echo "<br> $error_path";
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch (ErrorException  $er)
       {  
-        echo 'ErrorException Message: ' .$er->getMessage();  
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch ( Throwable $th){
-        echo 'ErrorException Message: ' .$th->getMessage();
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }
     }
 
@@ -758,22 +826,25 @@ if ( ! class_exists( 'WP_Library_Manager' ) ) {
       }
       catch (Exception $e) 
       {  
-        echo 'Exception Message: ' .$e->getMessage();  
+        echo esc_html('Exception Message: ' . $e->getMessage());
+  
         if ($e->getSeverity() === E_ERROR) {
-            echo("E_ERROR triggered.\n");
+            echo esc_html("E_ERROR triggered." . PHP_EOL);
         } else if ($e->getSeverity() === E_WARNING) {
-            echo("E_WARNING triggered.\n");
+            echo esc_html("E_WARNING triggered." . PHP_EOL);
         }
-        echo "<br> $error_path";
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch (ErrorException  $er)
       {  
-        echo 'ErrorException Message: ' .$er->getMessage();  
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch ( Throwable $th){
-        echo 'ErrorException Message: ' .$th->getMessage();
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }
     }
 
@@ -797,22 +868,25 @@ if ( ! class_exists( 'WP_Library_Manager' ) ) {
       }
       catch (Exception $e) 
       {  
-        echo 'Exception Message: ' .$e->getMessage();  
+        echo esc_html('Exception Message: ' . $e->getMessage());
+  
         if ($e->getSeverity() === E_ERROR) {
-            echo("E_ERROR triggered.\n");
+            echo esc_html("E_ERROR triggered." . PHP_EOL);
         } else if ($e->getSeverity() === E_WARNING) {
-            echo("E_WARNING triggered.\n");
+            echo esc_html("E_WARNING triggered." . PHP_EOL);
         }
-        echo "<br> $error_path";
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch (ErrorException  $er)
       {  
-        echo 'ErrorException Message: ' .$er->getMessage();  
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch ( Throwable $th){
-        echo 'ErrorException Message: ' .$th->getMessage();
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+        echo wp_kses_post("<br> " . esc_url($error_path));
     }
   }
     /**
@@ -852,26 +926,30 @@ if ( ! class_exists( 'WP_Library_Manager' ) ) {
         /**
          * Allow processing to happen after libraries are loaded.
          */
+        // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
         do_action( 'libraries_loaded' );
       }
       catch (Exception $e) 
       {  
-        echo 'Exception Message: ' .$e->getMessage();  
+        echo esc_html('Exception Message: ' . $e->getMessage());
+  
         if ($e->getSeverity() === E_ERROR) {
-            echo("E_ERROR triggered.\n");
+            echo esc_html("E_ERROR triggered." . PHP_EOL);
         } else if ($e->getSeverity() === E_WARNING) {
-            echo("E_WARNING triggered.\n");
+            echo esc_html("E_WARNING triggered." . PHP_EOL);
         }
-        echo "<br> $error_path";
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch (ErrorException  $er)
       {  
-        echo 'ErrorException Message: ' .$er->getMessage();  
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch ( Throwable $th){
-        echo 'ErrorException Message: ' .$th->getMessage();
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }
 
     }
@@ -890,6 +968,7 @@ if ( ! class_exists( 'WP_Library_Manager' ) ) {
         if ( count( $this->_loaders ) ) {
           global $plugin;
           $save_plugin = $plugin;
+          // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
           $loaders = apply_filters( 'plugin_loaders', $this->_loaders );
           self::$loading_plugin_loaders = true;
           foreach( $loaders as $plugin => $loader ) {
@@ -902,26 +981,30 @@ if ( ! class_exists( 'WP_Library_Manager' ) ) {
         /**
          * Allow processing to happen after plugin loaders are loaded.
          */
+        // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
         do_action( 'plug_loaders_loaded' );
       }
       catch (Exception $e) 
       {  
-        echo 'Exception Message: ' .$e->getMessage();  
+        echo esc_html('Exception Message: ' . $e->getMessage());
+  
         if ($e->getSeverity() === E_ERROR) {
-            echo("E_ERROR triggered.\n");
+            echo esc_html("E_ERROR triggered." . PHP_EOL);
         } else if ($e->getSeverity() === E_WARNING) {
-            echo("E_WARNING triggered.\n");
+            echo esc_html("E_WARNING triggered." . PHP_EOL);
         }
-        echo "<br> $error_path";
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch (ErrorException  $er)
       {  
-        echo 'ErrorException Message: ' .$er->getMessage();  
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch ( Throwable $th){
-        echo 'ErrorException Message: ' .$th->getMessage();
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }
 
     }
@@ -946,22 +1029,25 @@ if ( ! class_exists( 'WP_Library_Manager' ) ) {
       }
       catch (Exception $e) 
       {  
-        echo 'Exception Message: ' .$e->getMessage();  
+        echo esc_html('Exception Message: ' . $e->getMessage());
+  
         if ($e->getSeverity() === E_ERROR) {
-            echo("E_ERROR triggered.\n");
+            echo esc_html("E_ERROR triggered." . PHP_EOL);
         } else if ($e->getSeverity() === E_WARNING) {
-            echo("E_WARNING triggered.\n");
+            echo esc_html("E_WARNING triggered." . PHP_EOL);
         }
-        echo "<br> $error_path";
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch (ErrorException  $er)
       {  
-        echo 'ErrorException Message: ' .$er->getMessage();  
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch ( Throwable $th){
-        echo 'ErrorException Message: ' .$th->getMessage();
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }
     }
 
@@ -981,35 +1067,35 @@ if ( ! class_exists( 'WP_Library_Manager' ) ) {
       try {
 
         global $plugin, $pagenow;
-        $is_plugin_activation = 'plugins.php' == $pagenow
-          && isset( $_GET['action'] ) && 'activate' == $_GET['action']
-          && isset( $_GET['plugin'] );
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        $is_plugin_activation = 'plugins.php' == $pagenow && isset( $_GET['action'] ) && 'activate' == $_GET['action'] && isset( $_GET['plugin'] );
         if ( $is_plugin_activation && $plugin_file ) {
-          $is_plugin_activation = ! is_null( $plugin )
-            && is_string( $plugin )
-            && '/' != $plugin[0]
-            && preg_match( '#' . preg_quote( $_GET['plugin'] ) . '$#', $plugin_file );
+          // phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+          $is_plugin_activation = ! is_null( $plugin ) && is_string( $plugin ) && '/' != $plugin[0] && preg_match( '#' . preg_quote( $_GET['plugin'] ) . '$#', $plugin_file );
         }
         return $is_plugin_activation;
       }
       catch (Exception $e) 
       {  
-        echo 'Exception Message: ' .$e->getMessage();  
+        echo esc_html('Exception Message: ' . $e->getMessage());
+  
         if ($e->getSeverity() === E_ERROR) {
-            echo("E_ERROR triggered.\n");
+            echo esc_html("E_ERROR triggered." . PHP_EOL);
         } else if ($e->getSeverity() === E_WARNING) {
-            echo("E_WARNING triggered.\n");
+            echo esc_html("E_WARNING triggered." . PHP_EOL);
         }
-        echo "<br> $error_path";
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch (ErrorException  $er)
       {  
-        echo 'ErrorException Message: ' .$er->getMessage();  
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch ( Throwable $th){
-        echo 'ErrorException Message: ' .$th->getMessage();
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }
 
 
@@ -1027,28 +1113,30 @@ if ( ! class_exists( 'WP_Library_Manager' ) ) {
       try {
 
         global $pagenow;
-        return 'plugins.php' == $pagenow
-          && isset( $_GET['action'] ) && 'error_scrape' == $_GET['action']
-          && isset( $_GET['plugin'] );
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        return 'plugins.php' == $pagenow && isset( $_GET['action'] ) && 'error_scrape' == $_GET['action'] && isset( $_GET['plugin'] );
         }
         catch (Exception $e) 
         {  
-          echo 'Exception Message: ' .$e->getMessage();  
+          echo esc_html('Exception Message: ' . $e->getMessage());
+  
           if ($e->getSeverity() === E_ERROR) {
-              echo("E_ERROR triggered.\n");
+              echo esc_html("E_ERROR triggered." . PHP_EOL);
           } else if ($e->getSeverity() === E_WARNING) {
-              echo("E_WARNING triggered.\n");
+              echo esc_html("E_WARNING triggered." . PHP_EOL);
           }
-          echo "<br> $error_path";
+          echo wp_kses_post("<br> " . esc_url($error_path));
         }  
         catch (ErrorException  $er)
         {  
-          echo 'ErrorException Message: ' .$er->getMessage();  
-          echo "<br> $error_path";
+          echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+          echo wp_kses_post("<br> " . esc_url($error_path));
         }  
         catch ( Throwable $th){
-          echo 'ErrorException Message: ' .$th->getMessage();
-          echo "<br> $error_path";
+          echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+          echo wp_kses_post("<br> " . esc_url($error_path));
         }
      
     }
@@ -1074,12 +1162,13 @@ if ( ! class_exists( 'WP_Library_Manager' ) ) {
 
 
           global $pagenow;
-          $is_plugin_uninstall = 'plugins.php' == $pagenow
-            && isset( $_GET['action'] ) && 'delete-selected' == $_GET['action']
-            && isset( $_GET['checked'] ) && is_array( $_GET['checked'] );
+          // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+          $is_plugin_uninstall = 'plugins.php' == $pagenow && isset( $_GET['action'] ) && 'delete-selected' == $_GET['action'] && isset( $_GET['checked'] ) && is_array( $_GET['checked'] );
           if ( $is_plugin_uninstall && $plugin_file ) {
             $is_plugin_uninstall = false;
-            foreach( $_GET['checked'] as $plugin_slug ) {
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+            $checked_plugins = array_map( 'sanitize_text_field', wp_unslash( $_GET['checked'] ) );
+            foreach( $checked_plugins as $plugin_slug ) {
               if ( preg_match( '#' . preg_quote( $plugin_slug ) . '$#', $plugin_file ) ) {
                 $is_plugin_uninstall = true;
                 break;
@@ -1090,43 +1179,49 @@ if ( ! class_exists( 'WP_Library_Manager' ) ) {
         }
         catch (Exception $e) 
         {  
-          echo 'Exception Message: ' .$e->getMessage();  
+          echo esc_html('Exception Message: ' . $e->getMessage());
+  
           if ($e->getSeverity() === E_ERROR) {
-              echo("E_ERROR triggered.\n");
+              echo esc_html("E_ERROR triggered." . PHP_EOL);
           } else if ($e->getSeverity() === E_WARNING) {
-              echo("E_WARNING triggered.\n");
+              echo esc_html("E_WARNING triggered." . PHP_EOL);
           }
-          echo "<br> $error_path";
+          echo wp_kses_post("<br> " . esc_url($error_path));
         }  
         catch (ErrorException  $er)
         {  
-          echo 'ErrorException Message: ' .$er->getMessage();  
-          echo "<br> $error_path";
+          echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+          echo wp_kses_post("<br> " . esc_url($error_path));
         }  
         catch ( Throwable $th){
-          echo 'ErrorException Message: ' .$th->getMessage();
-          echo "<br> $error_path";
+          echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+          echo wp_kses_post("<br> " . esc_url($error_path));
         }
 
       }
       catch (Exception $e) 
       {  
-        echo 'Exception Message: ' .$e->getMessage();  
+        echo esc_html('Exception Message: ' . $e->getMessage());
+  
         if ($e->getSeverity() === E_ERROR) {
-            echo("E_ERROR triggered.\n");
+            echo esc_html("E_ERROR triggered." . PHP_EOL);
         } else if ($e->getSeverity() === E_WARNING) {
-            echo("E_WARNING triggered.\n");
+            echo esc_html("E_WARNING triggered." . PHP_EOL);
         }
-        echo "<br> $error_path";
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch (ErrorException  $er)
       {  
-        echo 'ErrorException Message: ' .$er->getMessage();  
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }  
       catch ( Throwable $th){
-        echo 'ErrorException Message: ' .$th->getMessage();
-        echo "<br> $error_path";
+        echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+        echo wp_kses_post("<br> " . esc_url($error_path));
       }
     }
 
@@ -1140,6 +1235,7 @@ if ( ! class_exists( 'WP_Library_Manager' ) ) {
    * @param string $library_file
    * @param array $args
    */
+  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
   function require_library( $library_name, $version, $plugin_file, $library_file, $args = array() ) {
     $error_path = plugin_dir_url(__FILE__) ;
     try {
@@ -1147,22 +1243,25 @@ if ( ! class_exists( 'WP_Library_Manager' ) ) {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
   }
 
@@ -1170,6 +1269,7 @@ if ( ! class_exists( 'WP_Library_Manager' ) ) {
    * @param string $plugin_file
    * @param array $args
    */
+  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
   function register_plugin_loader( $plugin_file, $args = array() ) {
 
     $error_path = plugin_dir_url(__FILE__) ;
@@ -1181,22 +1281,25 @@ if ( ! class_exists( 'WP_Library_Manager' ) ) {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
   }
 
@@ -1205,6 +1308,8 @@ if ( ! class_exists( 'WP_Library_Manager' ) ) {
    * @param string|bool $loader_file
    * @param array $args
    */
+
+  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
   function register_theme_loader( $plugin_file, $loader_file = false, $args = array() ) {
     $error_path = plugin_dir_url(__FILE__) ;
     try {
@@ -1214,22 +1319,25 @@ if ( ! class_exists( 'WP_Library_Manager' ) ) {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
 
   }
@@ -1250,22 +1358,25 @@ if ( ! class_exists( 'WP_Library_Manager' ) ) {
     }
     catch (Exception $e) 
     {  
-      echo 'Exception Message: ' .$e->getMessage();  
+      echo esc_html('Exception Message: ' . $e->getMessage());
+  
       if ($e->getSeverity() === E_ERROR) {
-          echo("E_ERROR triggered.\n");
+          echo esc_html("E_ERROR triggered." . PHP_EOL);
       } else if ($e->getSeverity() === E_WARNING) {
-          echo("E_WARNING triggered.\n");
+          echo esc_html("E_WARNING triggered." . PHP_EOL);
       }
-      echo "<br> $error_path";
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch (ErrorException  $er)
     {  
-      echo 'ErrorException Message: ' .$er->getMessage();  
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $er->getMessage());
+    
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }  
     catch ( Throwable $th){
-      echo 'ErrorException Message: ' .$th->getMessage();
-      echo "<br> $error_path";
+      echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+      echo wp_kses_post("<br> " . esc_url($error_path));
     }
   }
 }
