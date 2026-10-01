@@ -63,7 +63,7 @@ class DMCA_Pages_list_table extends WP_List_Table {
 		$error_path = plugin_dir_url(__FILE__) ;
 		try {
 
-			echo '<tr class="single-row single-row-' . esc_attr( $item->ID ) . ' dmca-status-' . esc_attr( get_dmca_submission_status_raw( $item->ID ) ) . '" data-row-id="' . esc_attr( $item->ID ) . '">';
+			echo '<tr class="dmca-status-row single-row single-row-' . esc_attr( $item->ID ) . ' dmca-status-' . esc_attr( get_dmca_submission_status_raw( $item->ID ) ) . '" data-row-id="' . esc_attr( $item->ID ) . '">';
 			$this->single_row_columns( $item );
 			echo '</tr>';
 			
@@ -185,14 +185,18 @@ class DMCA_Pages_list_table extends WP_List_Table {
 				return;
 			}
 
-			echo '<div class="alignleft actions filter-by-form">';
+			echo '<div class="alignleft actions filter-by-form" style="display:flex;">';
+			echo '<form method="get">';
+            echo '<input type="hidden" name="page" value="dmca-badge-settings" />';
+            echo '<input type="hidden" name="tab" value="pages" />';
 			echo "<select name='ds' id='ds'>";
 			printf( "<option value=''>%s</option>", esc_html(__( 'Select Submission Status', 'dmca-badge' )) );
-			printf( "<option value='sent'>%s</option>", esc_html(__( 'Sent', 'dmca-badge' )) );
-			printf( "<option value='not_sent'>%s</option>", esc_html(__( 'Not Sent', 'dmca-badge' )) );
+			printf( "<option value='sent'>%s</option>", esc_html(__( 'Protected', 'dmca-badge' )) );
+			printf( "<option value='not_sent'>%s</option>", esc_html(__( 'Not Protected', 'dmca-badge' )) );
 			echo "</select>";
 
 			submit_button( esc_html(__( 'Filter pages', 'dmca-badge' )), '', '', false, array( 'id' => 'filter-submit' ) );
+			echo '</form>';
 
 			printf( '<div class="add-all-pages" data-token="%s" data-ajaxurl="%s">%s</div>',
 				esc_html( dmca_get_login_token() ), esc_html( admin_url( 'admin-ajax.php' ) ), esc_html__( 'Submit all Pages', 'dmca-badge' )

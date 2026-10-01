@@ -2511,14 +2511,14 @@ class DMCA_Badge_Plugin extends Sidecar_Plugin_Base
 		$error_path = plugin_dir_url(__FILE__);
 		try {
 
-			$version = $this->plugin_version . WP_DEBUG ? '-' . wp_rand(1, 100000) : false;
-			wp_enqueue_script("{$this->plugin_name}_admin_script", plugins_url("{$this->plugin_slug}/js/admin-script.js", $this->plugin_slug), array('jquery'), $version, true);
-			wp_enqueue_style("{$this->plugin_name}_admin_styles", plugins_url("{$this->plugin_slug}/css/admin-style.css", $this->plugin_slug), array(), $version);
+			$version = $this->plugin_version . WP_DEBUG ? wp_rand(1, 100000) : false;
+			wp_enqueue_script("{$this->plugin_name}_admin_script", plugin_dir_url(dirname(__FILE__)) . 'js/admin-script.js', array('jquery'), $version, true);
+			wp_enqueue_style("{$this->plugin_name}_admin_styles", plugin_dir_url(dirname(__FILE__)) . 'css/admin-style.css', array(), $version);
 
-			wp_enqueue_script("{$this->plugin_name}_colorpicker", plugins_url("{$this->plugin_slug}/js/colorpicker.js", $this->plugin_slug), array('jquery'), $version, false);
-			wp_enqueue_style("{$this->plugin_name}_colorpicker", plugins_url("{$this->plugin_slug}/css/colorpicker.css", $this->plugin_slug), array(), $version);
+			wp_enqueue_script("{$this->plugin_name}_colorpicker", plugin_dir_url(dirname(__FILE__)) . 'js/colorpicker.js', array('jquery'), $version, false);
+			wp_enqueue_style("{$this->plugin_name}_colorpicker", plugin_dir_url(dirname(__FILE__)) . 'css/colorpicker.css', array(), $version);
 
-			wp_enqueue_style("{$this->plugin_name}_fontAwesome", plugins_url("{$this->plugin_slug}/css/font-awesome.min.css", $this->plugin_slug), array(), $version);
+			// wp_enqueue_style("{$this->plugin_name}_fontAwesome", plugin_dir_url(dirname(__FILE__)) . 'css/font-awesome.min.css', array(), $version);
 		} catch (Exception $e) {
 			echo esc_html('Exception Message: ' . $e->getMessage());
 

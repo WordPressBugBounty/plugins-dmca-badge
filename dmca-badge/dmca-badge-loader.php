@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * the required libraries are available and loaded.
  */
 define( 'DMCA_BADGE_DIR', dirname( __FILE__ ) );
-define( 'DMCA_BADGE_VER', '2.3.0' );
+define( 'DMCA_BADGE_VER', '2.3.1' );
 define( 'DMCA_BADGE_MIN_PHP', '8.0' );
 define( 'DMCA_BADGE_MIN_WP', '6.6' );
 

@@ -3,8 +3,8 @@
 Plugin Name: DMCA Website Protection Badge
 Plugin URI : https://www.dmca.com/WordPress/default.aspx?r=wpd1
 Description: Protect your content with a DMCA.com Website Protection Badge. Our badges deter content theft, provide tracking of unauthorized usage (with account), and make takedowns easier and more effective. Visit the plugin site to learn more about DMCA Website Protection Badges, or to register.
-Version: 2.3.0
-Tested up to: 7.0
+Version: 2.3.1
+Tested up to: 7.1
 Author: DMCA.com
 Text Domain: dmca-badge
 Author URI: https://wordpress.org/plugins/dmca-badge/
@@ -52,6 +52,31 @@ add_action( 'admin_footer', 'dmca_custom_scripts_addition' );
 add_action( 'wp_ajax_dmca_sync_page', 'dmca_sync_page' );
 add_action( 'wp_enqueue_scripts', 'dmca_enqueue_scripts' );
 add_action( 'wp_footer', 'dmca_pass_token_to_widget' );
+add_action( 'transition_post_status', 'dmca_auto_submit_on_publish', 10, 3 );
+
+function dmca_auto_submit_on_publish( $new_status, $old_status, $post ) {
+    // Only fire when post is first published
+    if ( $new_status !== 'publish' || $old_status === 'publish' ) {
+        return;
+    }
+
+    // Check plugin settings — only submit enabled post types
+    $settings   = dmca_get_option( 'dmca_badge_settings' );
+    $post_types = array();
+
+    foreach ( get_post_types( array( 'public' => true ) ) as $post_type => $label ) {
+        if ( isset( $settings->values['theme'][ 'dmca_post_type_' . $post_type ] ) && $settings->values['theme'][ 'dmca_post_type_' . $post_type ] ) {
+            $post_types[] = $post_type;
+        }
+    }
+
+    // If post type is not enabled in settings — skip
+    if ( ! in_array( $post->post_type, $post_types ) ) {
+        return;
+    }
+
+    dmca_add_protected_item( $post->ID );
+}
 
 
 if ( ! function_exists( 'dmca_pass_token_to_widget' ) ) {
@@ -229,41 +254,55 @@ if ( ! function_exists( 'dmca_sync_page' ) ) {
 	function dmca_sync_page() {
 		$error_path = plugin_dir_url(__FILE__) ;
 		try { 
-		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Read-only admin filter.	
-		$page_id     = isset( $_POST['page_id'] ) ? sanitize_text_field( wp_unslash( $_POST['page_id'] ) ) : '';
-		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Read-only admin filter.
-		$login_token = isset( $_POST['login_token'] ) ? sanitize_text_field( wp_unslash( $_POST['login_token'] ) ) : '';
-
-		if ( ! $page_id || empty( $page_id ) ) {
-			wp_send_json_error();
-		}
-
-		wp_send_json_success( dmca_add_protected_item( $page_id, $login_token ) );
-	}
-
-	catch (Exception $e) 
-			{  
-				echo esc_html('Exception Message: ' . $e->getMessage());
-  
-				if ($e->getSeverity() === E_ERROR) {
-					echo esc_html("E_ERROR triggered." . PHP_EOL);
-				} else if ($e->getSeverity() === E_WARNING) {
-					echo esc_html("E_WARNING triggered." . PHP_EOL);
-				}
-				echo wp_kses_post("<br> " . esc_url($error_path));
-			}  
-			catch (ErrorException  $er)
-			{  
-				echo esc_html('ErrorException Message: ' . $er->getMessage());
+		    
+		    if ( ! current_user_can( 'manage_options' ) ) {
+                wp_send_json_error(
+                    array( 'message' => 'Unauthorized request.' ),
+                    403
+                );
+            }
+		    
+    		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Read-only admin filter.	
+    		$page_id     = isset( $_POST['page_id'] ) ? sanitize_text_field( wp_unslash( $_POST['page_id'] ) ) : '';
+    		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Read-only admin filter.
+    		$login_token = isset( $_POST['login_token'] ) ? sanitize_text_field( wp_unslash( $_POST['login_token'] ) ) : '';
     
-				echo wp_kses_post("<br> " . esc_url($error_path));
-			}  
-			catch ( Throwable $th){
-				echo esc_html('ErrorException Message: ' . $th->getMessage());
+    		if ( ! $page_id || empty( $page_id ) ) {
+    			wp_send_json_error();
+    		}
+    		
+    		$result      = dmca_add_protected_item( $page_id, $login_token );
+            $saved_status = get_post_meta( $page_id, 'dmca_submission_status', true );
+    
+    		if ( $saved_status === 'sent' ) {
+                wp_send_json_success( $result );
+            } else {
+                wp_send_json_error( $result );
+            }
+    	}
 
-				echo wp_kses_post("<br> " . esc_url($error_path));
+    	catch (Exception $e) 
+		{  
+			echo esc_html('Exception Message: ' . $e->getMessage());
+
+			if ($e->getSeverity() === E_ERROR) {
+				echo esc_html("E_ERROR triggered." . PHP_EOL);
+			} else if ($e->getSeverity() === E_WARNING) {
+				echo esc_html("E_WARNING triggered." . PHP_EOL);
 			}
-			//finally block  
+			echo wp_kses_post("<br> " . esc_url($error_path));
+		}  
+		catch (ErrorException  $er)
+		{  
+			echo esc_html('ErrorException Message: ' . $er->getMessage());
+
+			echo wp_kses_post("<br> " . esc_url($error_path));
+		}  
+		catch ( Throwable $th){
+			echo esc_html('ErrorException Message: ' . $th->getMessage());
+
+			echo wp_kses_post("<br> " . esc_url($error_path));
+		}
 	}
 }
 
@@ -278,14 +317,13 @@ if ( ! function_exists( 'dmca_get_login_token' ) ) {
 		$error_path = plugin_dir_url(__FILE__) ;
 		try { 
 		$dmca_login_token = get_transient( 'dmca_login_token' );
-
 		if ( empty( $dmca_login_token ) ) {
 			$settings   = get_option( 'dmca_badge_settings' );
 			$settings   = isset( $settings->values ) ? $settings->values : array();
 			$email      = isset( $settings['authenticate']['email'] ) ? $settings['authenticate']['email'] : '';
 			$password   = isset( $settings['authenticate']['password'] ) ? $settings['authenticate']['password'] : '';
 			$base_url   = esc_url_raw( 'https://api.dmca.com', array( 'https' ) );
-
+			
 			// phpcs:ignore WordPress.WP.AlternativeFunctions.curl_curl_init -- cURL is required for this API integration.
 			$curl       = curl_init();
 			$login_data = array( 'email' => $email, 'password' => $password );
@@ -310,9 +348,17 @@ if ( ! function_exists( 'dmca_get_login_token' ) ) {
 			
 			// phpcs:ignore WordPress.WP.AlternativeFunctions.curl_curl_error -- cURL is required for this API integration.
 			$err      = curl_error( $curl );
+			
+			// phpcs:ignore WordPress.WP.AlternativeFunctions.curl_curl_error -- cURL is required for this API integration.
+			$http_code = curl_getinfo( $curl, CURLINFO_HTTP_CODE );
 
-			$dmca_login_token = ! $err ? str_replace( '"', '', $response ) : '';
-			set_transient( 'dmca_login_token', $dmca_login_token );
+			if ( ! $err && $http_code === 200 ) {
+                $dmca_login_token = str_replace( '"', '', $response );
+                set_transient( 'dmca_login_token', $dmca_login_token, HOUR_IN_SECONDS );
+            } else {
+                delete_transient( 'dmca_login_token' );
+                $dmca_login_token = '';
+            }
 		}
 		else{
 			//echo '<p>Issue in token.</p>';
@@ -377,7 +423,7 @@ if ( ! function_exists( 'dmca_add_protected_item' ) ) {
 			'title'       => $item_post->post_title,
 			'url'         => get_the_permalink( $item_post ),
 			'description' => wp_trim_words( $item_post->post_content, 10 ),
-			'status'      => $item_post->post_status,
+			'status'      => 'Active',
 			'source'      => site_url(),
 			'type'        => $item_type,
 		);
@@ -401,18 +447,27 @@ if ( ! function_exists( 'dmca_add_protected_item' ) ) {
 				"Token: $token",
 			),
 		) );
-
+		
+	
 		// phpcs:ignore WordPress.WP.AlternativeFunctions.curl_curl_exec -- cURL is required for this API integration.
 		$response = curl_exec( $curl );
 
 		// phpcs:ignore WordPress.WP.AlternativeFunctions.curl_curl_error -- cURL is required for this API integration.
 		$err      = curl_error( $curl );
-
+		
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.curl_curl_error -- cURL is required for this API integration.
+		$http_code = curl_getinfo( $curl, CURLINFO_HTTP_CODE );
+        
 		if ( $err ) {
 			return $err;
 		}
 
-		update_post_meta( $post_id, 'dmca_submission_status', 'sent' );
+		if ( $http_code === 200 ) {
+            update_post_meta( $post_id, 'dmca_submission_status', 'sent' );
+        } else {
+            update_post_meta( $post_id, 'dmca_submission_status', 'not_sent' );
+        }
+		
 		// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log -- Debug logging during development.
 		error_log( $response );
 
@@ -561,7 +616,7 @@ if ( ! function_exists( 'get_dmca_submission_status' ) ) {
 		$error_path = plugin_dir_url(__FILE__) ;
 		try { 
 		$submission_status_r = get_dmca_submission_status_raw( $post_id );
-		$submission_status_e = $submission_status_r === 'sent' ? esc_html( 'Sent' ) : esc_html( 'Not Sent' );
+		$submission_status_e = $submission_status_r === 'sent' ? esc_html( 'Protected' ) : esc_html( 'Not Protected' );
 
 		return apply_filters( 'dmca_filters_get_dmca_submission_status', $submission_status_e, $post_id, $submission_status_r );
 	}

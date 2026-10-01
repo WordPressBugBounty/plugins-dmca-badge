@@ -2,9 +2,9 @@
 Contributors: dmca, NewClarity
 Tags: dmca, badge, takedown, copyright, protection
 Requires at least: 6.6
-Tested up to: 7.0
+Tested up to: 7.1
 Plugin URI: https://www.dmca.com/WordPress
-Stable tag: 2.3.0
+Stable tag: 2.3.1
 Requires PHP: 8.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -68,6 +68,11 @@ Email: takedowns@dmca.com with your case number and request your free takedown.
 == Upgrade Notice ==
 
 Fixed 5.2.x compatibility and upgraded dependent libraries
+
+== Changelog ==
+
+= 2.3.1 =
+* General code quality improvements, maintenance updates, and bug fixes.
 
 == Changelog ==
 

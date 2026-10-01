@@ -88,7 +88,13 @@
         if (typeof thisRow === 'undefined' || typeof thisPageID === 'undefined') {
             return;
         }
-
+        
+        thisRow.removeClass('dmca-status-pending');
+        thisRow.removeClass('dmca-status-sent');
+        thisRow.removeClass('dmca-status-error');
+        
+        thisRow.addClass('dmca-status-pending');
+        
         thisStatusField.html('Processing...');
 
         $.ajax({
@@ -102,13 +108,12 @@
                 login_token: loginToken,
             },
             success: function (response) {
-                console.log(response);
                 if (response.success) {
-                    thisStatusField.html('Sent');
+                    thisStatusField.html('Protected');
                     thisRow.removeClass('dmca-status-pending').addClass('dmca-status-sent');
                 } else {
                     thisRow.removeClass('dmca-status-pending').addClass('dmca-status-error');
-                    thisStatusField.html(currentStatus);
+                    thisStatusField.html('Not Protected');
                 }
             }
         });
@@ -124,7 +129,7 @@
 
         let wpListTable = $('.wp-list-table.dmca_pages'),
             paginationLinks = $('.pagination-links'),
-            firstPendingRow = wpListTable.find('tbody tr.dmca-status-pending').first(),
+            firstPendingRow = wpListTable.find('tbody tr.dmca-status-row').first(),
             thisPageID = firstPendingRow.data('row-id'),
             thisStatusField = firstPendingRow.find('.dmca-status'),
             currentStatus = thisStatusField.html(),
@@ -142,11 +147,17 @@
 
             console.log(paginateButtonNext.html());
             if (!paginateButtonNext.hasClass('disabled') && typeof paginateButtonNextLink !== 'undefined') {
-                // window.location.href = paginateButtonNextLink + '&autoclick=yes';
+                window.location.href = paginateButtonNextLink + '&autoclick=yes';
             }
 
             return;
         }
+        
+        firstPendingRow.removeClass('dmca-status-pending');
+        firstPendingRow.removeClass('dmca-status-sent');
+        firstPendingRow.removeClass('dmca-status-error');
+        
+        firstPendingRow.addClass('dmca-status-pending');
 
         thisStatusField.html('Processing...');
 
@@ -167,20 +178,21 @@
                 },
                 success: function (response) {
                     if (response.success) {
-                        thisStatusField.html('Sent');
+                        thisStatusField.html('Protected');
                         firstPendingRow.removeClass('dmca-status-pending').addClass('dmca-status-sent');
+                        firstPendingRow.removeClass( 'dmca-status-row' );
                     } else {
                         firstPendingRow.removeClass('dmca-status-pending').addClass('dmca-status-error');
-                        thisStatusField.html(currentStatus);
+                        firstPendingRow.removeClass( 'dmca-status-row' );
+                        thisStatusField.html("Not Protected");
                     }
+                    
+                    /**
+                     * Recall the process
+                     */
+                    $(document.body).trigger('process_first_pending_row');
                 }
             });
-
-
-            /**
-             * Recall the process
-             */
-            $(document.body).trigger('process_first_pending_row');
         }, 1500);
     });
 
